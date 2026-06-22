@@ -1,0 +1,61 @@
+<!-- ============================================================
+   BLOCK 02 — HERO SECTION
+   GHL: Custom HTML element, first section below the header
+   ============================================================ -->
+<section class="ecr" style="min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#0f1f3d 60%,#0d2a5e 100%);display:flex;align-items:center;padding:80px 80px 60px;gap:60px;flex-wrap:wrap;">
+
+  <!-- LEFT -->
+  <div style="flex:1;min-width:280px;">
+    <h1 style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:clamp(42px,5vw,68px);font-weight:900;line-height:1.05;color:#fff;margin-bottom:24px;">
+      Your Florida<br>
+      <span style="color:#3b82f6;">Real Estate Partner</span>
+    </h1>
+    <p style="font-size:17px;color:#94a3b8;max-width:480px;margin-bottom:36px;line-height:1.7;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+      Residential &amp; commercial sales, rentals, property management, and financing — from Miami to Central Florida. Over 23 years helping families find their home.
+    </p>
+
+    <!-- CTAs -->
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
+      <a href="#ecr-prequal"
+         style="background:#3b82f6;color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Get Pre-Qualified →
+      </a>
+      <a href="tel:3053311152"
+         style="background:transparent;color:#fff;font-weight:600;font-size:15px;padding:13px 28px;border-radius:50px;border:1.5px solid rgba(255,255,255,0.35);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        📞 (305) 331-1152
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div style="display:flex;gap:40px;flex-wrap:wrap;">
+      <div style="border-left:3px solid #3b82f6;padding-left:16px;">
+        <div style="font-size:22px;font-weight:800;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">23+ years</div>
+        <div style="font-size:13px;color:#94a3b8;margin-top:2px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">in the Florida real estate market</div>
+      </div>
+      <div style="border-left:3px solid #3b82f6;padding-left:16px;">
+        <div style="font-size:22px;font-weight:800;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Miami to Ocala</div>
+        <div style="font-size:13px;color:#94a3b8;margin-top:2px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">serving clients across all of Florida</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — Agent photo -->
+  <div style="flex:0 0 380px;text-align:center;min-width:260px;">
+    <div style="background:linear-gradient(180deg,#e8edf5 0%,#d1dce8 100%);border-radius:20px;overflow:hidden;margin-bottom:20px;height:460px;display:flex;align-items:center;justify-content:center;">
+      <img src="https://tlt-image-server.lehr007.workers.dev/images/julio-ecr-realty"
+           alt="Julio Cardoso"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;"
+           onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:80px;opacity:0.2;\'>👤</div>'">
+    </div>
+    <div style="font-size:20px;font-weight:700;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Julio Cardoso</div>
+    <div style="font-size:13px;color:#94a3b8;margin-top:4px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Broker · Elite Capital Realty Inc.</div>
+  </div>
+
+</section>
+
+<style>
+@media(max-width:900px){
+  section.ecr { padding:80px 24px 60px !important; }
+  section.ecr > div:last-child { flex:none !important; width:100% !important; max-width:340px; margin:0 auto; }
+}
+</style>

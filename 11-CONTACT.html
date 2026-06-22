@@ -1,0 +1,103 @@
+<!-- ============================================================
+   BLOCK 11 — CONTACT SECTION
+   GHL: Custom HTML element, placed below Associations bar
+   NOTE: Replace form action with your GHL webhook URL or swap
+         the <form> entirely for a native GHL Form element.
+   ============================================================ -->
+<section id="ecr-contact" class="ecr ecr-section" style="background:#0f1f3d;">
+
+  <div class="ecr-label ecr-label-center">Contact</div>
+  <h2 class="ecr-h2" style="text-align:center;margin-bottom:56px;">
+    Let's <span class="ecr-accent">Get Started</span>
+  </h2>
+
+  <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- LEFT — Contact info -->
+    <div style="flex:0 0 320px;min-width:240px;">
+      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Elite Capital Realty Inc.
+      </div>
+      <div style="font-size:14px;color:#94a3b8;margin-bottom:32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Julio Cardoso — Reach out anytime.
+      </div>
+
+      <div class="ecr-contact-detail">
+        <div class="ecr-contact-detail-label">Service Area</div>
+        <div class="ecr-contact-detail-value">All of Florida — Miami to Ocala</div>
+      </div>
+
+      <div class="ecr-contact-detail">
+        <div class="ecr-contact-detail-label">Phone</div>
+        <div class="ecr-contact-detail-value">
+          <a href="tel:8634193714">Office: (863) 419-3714</a><br>
+          <a href="tel:3053311152">Cell: (305) 331-1152</a>
+        </div>
+      </div>
+
+      <div class="ecr-contact-detail">
+        <div class="ecr-contact-detail-label">Email</div>
+        <div class="ecr-contact-detail-value">
+          <a href="mailto:elitecapitalrealtyinc@gmail.com">elitecapitalrealtyinc@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Message form -->
+    <div class="ecr-form-dark" style="flex:1;min-width:280px;">
+      <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:24px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Send a Message
+      </div>
+
+      <!-- Replace action="#" with your GHL webhook URL -->
+      <form action="#" method="POST" onsubmit="return ecrSubmitContact(event)">
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">Name *</label>
+          <input class="ecr-input ecr-input-dark" type="text" name="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">Phone *</label>
+          <input class="ecr-input ecr-input-dark" type="tel" name="phone" placeholder="(000) 000-0000" required>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">Email</label>
+          <input class="ecr-input ecr-input-dark" type="email" name="email" placeholder="your@email.com">
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">How can we help? *</label>
+          <textarea class="ecr-textarea ecr-textarea-dark" name="message" placeholder="Tell us about your real estate needs..." required></textarea>
+        </div>
+
+        <button type="submit" class="ecr-btn-submit">Send Message</button>
+
+        <div id="ecrContactSuccess" style="display:none;margin-top:14px;padding:14px 18px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:8px;color:#93c5fd;font-size:14px;font-weight:600;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          ✓ Message sent! Julio will reach out soon.
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+function ecrSubmitContact(e) {
+  e.preventDefault();
+  document.getElementById('ecrContactSuccess').style.display = 'block';
+  e.target.querySelector('button[type=submit]').textContent = 'Sent ✓';
+  e.target.querySelector('button[type=submit]').disabled = true;
+  return false;
+}
+</script>
+
+<style>
+@media(max-width:900px){
+  #ecr-contact > div:last-child { flex-direction:column; }
+  #ecr-contact > div:last-child > div:first-child { flex:none !important; width:100% !important; }
+}
+</style>

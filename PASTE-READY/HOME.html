@@ -1,0 +1,997 @@
+<!-- ============================================================
+   BLOCK 01 — HEADER / NAV
+   GHL: Add a "Custom Code" element at the TOP of your page
+        (above all sections). Paste this entire snippet.
+   ============================================================ -->
+
+<!-- Shared CSS must be loaded first — paste 00-CUSTOM-CSS.css
+     into Page Settings → Custom CSS before using any blocks.    -->
+
+<style>
+.ecr-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #0a1628;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+.ecr-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.ecr-nav-logo-badge {
+  width: 44px; height: 44px;
+  background: #152647;
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+.ecr-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.ecr-nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.ecr-nav-links a:hover,
+.ecr-nav-links a.active { opacity: 1; }
+.ecr-nav-cta {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.ecr-nav-cta:hover { background: #2563eb; color: #fff; }
+
+/* Mobile hamburger */
+.ecr-nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.ecr-nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.ecr-nav-mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  background: #0a1628;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 24px 24px;
+  gap: 16px;
+}
+.ecr-nav-mobile.open { display: flex; }
+.ecr-nav-mobile a {
+  font-size: 16px; font-weight: 500;
+  color: #fff; text-decoration: none;
+  opacity: 0.85; padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ecr-nav-mobile a:hover { opacity: 1; }
+
+/* Push page content below fixed nav */
+body { padding-top: 64px; }
+
+/* Full-width breakout — overrides GHL's ~1150px column wrapper */
+html, body { overflow-x: hidden !important; }
+section.ecr, footer.ecr, .ecr-ticker, .ecr-assoc-bar {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+  .ecr-nav { padding: 0 20px; }
+  .ecr-nav-links { display: none; }
+  .ecr-nav-toggle { display: flex; }
+}
+</style>
+
+<nav class="ecr-nav">
+  <a href="/" class="ecr-nav-logo">
+    
+    <img src="https://tlt-image-server.lehr007.workers.dev/images/logo-ecr" alt="Elite Capital Realty Inc." style="height:44px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ecr-nav-logo-badge" style="display:none;">ECR</div>
+  </a>
+
+  <ul class="ecr-nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/properties">Properties</a></li>
+    <li><a href="/meet-our-agents">Meet Our Agents</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/join-our-team">Join Our Team</a></li>
+  </ul>
+
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="ecr-nav-toggle" onclick="document.getElementById('ecrMobileNav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="tel:3053311152" class="ecr-nav-cta">Call (305) 331-1152</a>
+  </div>
+</nav>
+
+<!-- Mobile dropdown -->
+<div id="ecrMobileNav" class="ecr-nav-mobile">
+  <a href="/">Home</a>
+  <a href="/properties">Properties</a>
+  <a href="/meet-our-agents">Meet Our Agents</a>
+  <a href="/blog">Blog</a>
+  <a href="/join-our-team">Join Our Team</a>
+  <a href="tel:3053311152" style="color:#3b82f6;opacity:1;font-weight:700;">(305) 331-1152</a>
+</div>
+
+<!-- ============================================================
+   BLOCK 02 — HERO SECTION
+   GHL: Custom HTML element, first section below the header
+   ============================================================ -->
+<section class="ecr" style="min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#0f1f3d 60%,#0d2a5e 100%);display:flex;align-items:center;padding:80px 80px 60px;gap:60px;flex-wrap:wrap;">
+
+  <!-- LEFT -->
+  <div style="flex:1;min-width:280px;">
+    <h1 style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:clamp(42px,5vw,68px);font-weight:900;line-height:1.05;color:#fff;margin-bottom:24px;">
+      Your Florida<br>
+      <span style="color:#3b82f6;">Real Estate Partner</span>
+    </h1>
+    <p style="font-size:17px;color:#94a3b8;max-width:480px;margin-bottom:36px;line-height:1.7;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+      Residential &amp; commercial sales, rentals, property management, and financing — from Miami to Central Florida. Over 23 years helping families find their home.
+    </p>
+
+    <!-- CTAs -->
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;">
+      <a href="#ecr-prequal"
+         style="background:#3b82f6;color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Get Pre-Qualified →
+      </a>
+      <a href="tel:3053311152"
+         style="background:transparent;color:#fff;font-weight:600;font-size:15px;padding:13px 28px;border-radius:50px;border:1.5px solid rgba(255,255,255,0.35);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        📞 (305) 331-1152
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div style="display:flex;gap:40px;flex-wrap:wrap;">
+      <div style="border-left:3px solid #3b82f6;padding-left:16px;">
+        <div style="font-size:22px;font-weight:800;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">23+ years</div>
+        <div style="font-size:13px;color:#94a3b8;margin-top:2px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">in the Florida real estate market</div>
+      </div>
+      <div style="border-left:3px solid #3b82f6;padding-left:16px;">
+        <div style="font-size:22px;font-weight:800;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Miami to Ocala</div>
+        <div style="font-size:13px;color:#94a3b8;margin-top:2px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">serving clients across all of Florida</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — Agent photo -->
+  <div style="flex:0 0 380px;text-align:center;min-width:260px;">
+    <div style="background:linear-gradient(180deg,#e8edf5 0%,#d1dce8 100%);border-radius:20px;overflow:hidden;margin-bottom:20px;height:460px;display:flex;align-items:center;justify-content:center;">
+      <img src="https://tlt-image-server.lehr007.workers.dev/images/julio-ecr-realty"
+           alt="Julio Cardoso"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;"
+           onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:80px;opacity:0.2;\'>👤</div>'">
+    </div>
+    <div style="font-size:20px;font-weight:700;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Julio Cardoso</div>
+    <div style="font-size:13px;color:#94a3b8;margin-top:4px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Broker · Elite Capital Realty Inc.</div>
+  </div>
+
+</section>
+
+<style>
+@media(max-width:900px){
+  section.ecr { padding:80px 24px 60px !important; }
+  section.ecr > div:last-child { flex:none !important; width:100% !important; max-width:340px; margin:0 auto; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 03 — SCROLLING TICKER BAR
+   GHL: Custom HTML element, placed directly below Hero section
+   ============================================================ -->
+<div class="ecr-ticker">
+  <div class="ecr-ticker-inner">
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Mortgage &amp; Loans</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Down Payment Assistance</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Miami to Ocala</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Bilingual Service</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Residential Sales</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Commercial Real Estate</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Property Rentals</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Property Management</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Mortgage &amp; Loans</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Down Payment Assistance</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Miami to Ocala</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Bilingual Service</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Residential Sales</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Commercial Real Estate</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Property Rentals</span>
+    <span class="ecr-ticker-item"><span class="ecr-ticker-dot"></span>Property Management</span>
+  </div>
+</div>
+
+<!-- ============================================================
+   BLOCK 04 — ABOUT JULIO CARDOSO
+   GHL: Custom HTML element, placed below Ticker
+   ============================================================ -->
+<section id="ecr-about" class="ecr ecr-section" style="background:#0a1628;display:flex;align-items:center;gap:80px;flex-wrap:wrap;">
+
+  <!-- LEFT — Image + badge -->
+  <div style="flex:0 0 420px;min-width:260px;position:relative;">
+    <div style="width:100%;border-radius:16px;overflow:hidden;height:480px;background:linear-gradient(135deg,#1e3a5f,#0f2a4a);">
+      <!-- SWAP: upload Cruise Ships.gif or Fort Lauderdale 2.png to tlt-image-server, then replace src -->
+      <img src="https://tlt-image-server.lehr007.workers.dev/images/virginia-gardens-street-with-vintager-car?w=700&q=80"
+           alt="Miami, Florida"
+           style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <!-- Years badge -->
+    <div style="position:absolute;top:-16px;right:-16px;width:90px;height:90px;background:#3b82f6;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:#fff;">
+      <span style="font-size:26px;font-weight:900;line-height:1;">23+</span>
+      <span style="font-size:9px;font-weight:700;letter-spacing:1px;opacity:0.85;margin-top:2px;">YEARS</span>
+    </div>
+  </div>
+
+  <!-- RIGHT — Copy -->
+  <div style="flex:1;min-width:260px;">
+    <div class="ecr-label">About Julio Cardoso</div>
+    <h2 class="ecr-h2">Your Trusted <span class="ecr-accent">Real Estate</span> Expert in Florida</h2>
+    <p class="ecr-desc">
+      Julio Cardoso leads Elite Capital Realty Inc., a full-service brokerage serving clients across all of Florida — from Miami to Ocala. With over 23 years of experience, Julio guides families and investors through the entire real estate process — from finding the right property to securing financing and closing.
+    </p>
+    <p style="font-size:15px;color:#94a3b8;line-height:1.7;margin-bottom:32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+      Whether you're buying your first home, investing in commercial real estate, or looking for financing options, Julio and his team are ready to guide you every step of the way.
+    </p>
+    <div class="ecr-feature-grid">
+      <div class="ecr-feature-card"><span class="ecr-check">✓</span> All Credit Types</div>
+      <div class="ecr-feature-card"><span class="ecr-check">✓</span> Down Payment Assistance</div>
+      <div class="ecr-feature-card"><span class="ecr-check">✓</span> In-House Lender &amp; Title</div>
+      <div class="ecr-feature-card"><span class="ecr-check">✓</span> Bilingual (EN / ES)</div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+@media(max-width:900px){
+  #ecr-about { padding:64px 24px !important; }
+  #ecr-about > div:first-child { flex:none !important; width:100% !important; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 05 — FEATURED LISTINGS / PROPERTIES
+   GHL: Custom HTML element, placed below About section
+   ============================================================ -->
+<section id="ecr-properties" class="ecr ecr-section" style="background:#f1f5f9;">
+
+  <div class="ecr-label">Our Properties</div>
+  <h2 class="ecr-h2 ecr-h2-dark">Featured <span class="ecr-accent">Listings</span></h2>
+  <p style="font-size:16px;color:#64748b;margin-bottom:32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+    Browse our properties across South &amp; Central Florida — for sale, for rent, and recently sold.
+  </p>
+
+  <!-- Filter buttons -->
+  <div class="ecr-filter-row">
+    <button class="ecr-filter-btn active" onclick="ecrFilter(this,'all')">All 12</button>
+    <button class="ecr-filter-btn" onclick="ecrFilter(this,'sale')">For Sale 5</button>
+    <button class="ecr-filter-btn" onclick="ecrFilter(this,'rent')">For Rent 3</button>
+    <button class="ecr-filter-btn" onclick="ecrFilter(this,'closed')">Closed Deals 4</button>
+  </div>
+
+  <!-- Property grid -->
+  <div class="ecr-prop-grid">
+
+    <!-- 1 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://tlt-image-server.lehr007.workers.dev/images/north-lauderdale-home?w=500&q=80" alt="1701 NE 115th St">
+        <span class="ecr-prop-badge ecr-badge-sale">For Sale</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$249,900</div>
+        <div class="ecr-prop-address">1701 NE 115th St, #1A — Miami, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">1</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">1</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">776</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80" alt="10 McCarthy Avenue">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$139,000</div>
+        <div class="ecr-prop-address">10 McCarthy Avenue — Frostproof, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">2</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">1</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,040</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=500&q=80" alt="5448 Meadow Walk Drive">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$393,990</div>
+        <div class="ecr-prop-address">5448 Meadow Walk Drive — Davenport, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">6</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">3</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">2,463</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&q=80" alt="5868 Agostino Way">
+        <span class="ecr-prop-badge ecr-badge-sale">For Sale</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$439,000</div>
+        <div class="ecr-prop-address">5868 Agostino Way — Ave Maria, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">3</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">2.5</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,924</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="ecr-prop-card" data-type="rent">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&q=80" alt="219 Glowing Peace Lane">
+        <span class="ecr-prop-badge ecr-badge-rent">For Rent</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$2,150<span style="font-size:13px;font-weight:500;color:#64748b;">/mo</span></div>
+        <div class="ecr-prop-address">219 Glowing Peace Lane #85 — Orlando, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">3</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">2.5</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,495</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=500&q=80" alt="1120 Chesterfield">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$337,900</div>
+        <div class="ecr-prop-address">1120 Chesterfield — Kissimmee, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">4</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">2</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,814</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;">
+    <a href="#ecr-contact" class="ecr-btn ecr-btn-primary">View All Properties</a>
+  </div>
+
+</section>
+
+<script>
+function ecrFilter(btn, type) {
+  document.querySelectorAll('.ecr-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.ecr-prop-card').forEach(function(card){
+    card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+  });
+}
+</script>
+
+<!-- ============================================================
+   BLOCK 06 — REAL ESTATE SERVICES
+   GHL: Custom HTML element, placed below Properties section
+   ============================================================ -->
+<section id="ecr-services" class="ecr ecr-section" style="background:#0f1f3d;">
+
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="ecr-label ecr-label-center">Real Estate Services</div>
+    <h2 class="ecr-h2" style="text-align:center;">What We <span class="ecr-accent">Do</span></h2>
+    <p class="ecr-desc ecr-desc-center">
+      Residential and commercial real estate solutions — buying, selling, renting, and property management across Florida.
+    </p>
+  </div>
+
+  <div class="ecr-services-grid">
+
+    <div class="ecr-service-card">
+      <div class="ecr-service-icon">🏠</div>
+      <div class="ecr-service-title">Residential Sales</div>
+      <p class="ecr-service-desc">Find your dream home across South and Central Florida. Personalized search, expert negotiation, and full support through closing.</p>
+    </div>
+
+    <div class="ecr-service-card">
+      <div class="ecr-service-icon">🏢</div>
+      <div class="ecr-service-title">Commercial Real Estate</div>
+      <p class="ecr-service-desc">Investment properties, retail spaces, and commercial opportunities across the Florida market.</p>
+    </div>
+
+    <div class="ecr-service-card">
+      <div class="ecr-service-icon">🔑</div>
+      <div class="ecr-service-title">Property Rentals</div>
+      <p class="ecr-service-desc">Access to rental properties for families and individuals. We help match you with the right property for your needs.</p>
+    </div>
+
+    <div class="ecr-service-card">
+      <div class="ecr-service-icon">🛠️</div>
+      <div class="ecr-service-title">Property Management</div>
+      <p class="ecr-service-desc">Hassle-free management for property owners — tenant screening, maintenance coordination, and financial oversight.</p>
+    </div>
+
+    <div class="ecr-service-card">
+      <div class="ecr-service-icon">🤝</div>
+      <div class="ecr-service-title">Buyer Representation</div>
+      <p class="ecr-service-desc">Dedicated representation throughout the buying process. We negotiate on your behalf from offer to close.</p>
+    </div>
+
+    <div class="ecr-service-card">
+      <div class="ecr-service-icon">📈</div>
+      <div class="ecr-service-title">Seller Listing Services</div>
+      <p class="ecr-service-desc">Strategic marketing, pricing analysis, and guidance to help you sell your property at the best possible value.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================================
+   BLOCK 07 — FINANCING & MORTGAGE CALCULATOR
+   GHL: Custom HTML element, placed below Services section
+   ============================================================ -->
+<section id="ecr-financing" class="ecr ecr-section" style="background:#0a1628;">
+
+  <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- LEFT — Copy -->
+    <div style="flex:1;min-width:260px;">
+      <div class="ecr-label">Financing &amp; Mortgages</div>
+      <h2 class="ecr-h2">Get the Right <span class="ecr-accent">Mortgage</span> for You</h2>
+      <p class="ecr-desc">
+        We work with multiple lenders and assistance programs to find the best financing solution for your situation — whether you're a first-time buyer or a seasoned investor.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:36px;">
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          All credit types considered
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          Down Payment Assistance programs
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          FHA, VA, Conventional, and ITIN loans
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          Self-employed &amp; 1099 friendly
+        </div>
+      </div>
+
+      <a href="#ecr-prequal" class="ecr-btn ecr-btn-primary">Get Pre-Qualified Now</a>
+    </div>
+
+    <!-- RIGHT — Calculator -->
+    <div class="ecr-calculator" style="flex:0 0 420px;min-width:280px;">
+      <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Mortgage Calculator</div>
+      <p style="font-size:13px;color:#94a3b8;margin-bottom:24px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Estimate your monthly payment</p>
+
+      <label class="ecr-calc-label">Home Price ($)</label>
+      <input class="ecr-calc-input" type="number" id="ecrHomePrice" value="400000" oninput="ecrCalc()">
+
+      <label class="ecr-calc-label">Down Payment ($)</label>
+      <input class="ecr-calc-input" type="number" id="ecrDownPayment" value="70000" oninput="ecrCalc()">
+
+      <label class="ecr-calc-label">Interest Rate (%)</label>
+      <input class="ecr-calc-input" type="number" id="ecrRate" value="7.0" step="0.1" oninput="ecrCalc()">
+
+      <label class="ecr-calc-label">Loan Term</label>
+      <select class="ecr-calc-select" id="ecrTerm" onchange="ecrCalc()">
+        <option value="15">15 years</option>
+        <option value="20">20 years</option>
+        <option value="30" selected>30 years</option>
+      </select>
+
+      <div class="ecr-calc-result">
+        <div class="ecr-calc-result-label">Estimated Monthly Payment</div>
+        <div class="ecr-calc-amount" id="ecrMonthly">$2,193</div>
+        <div class="ecr-calc-breakdown">
+          <span>Total Loan: <strong id="ecrLoan">$330,000</strong></span>
+          <span>Total Paid: <strong id="ecrTotal">$789,480</strong></span>
+        </div>
+      </div>
+      <p class="ecr-calc-note">Principal + interest only. Taxes &amp; insurance not included.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+function ecrCalc() {
+  var price = parseFloat(document.getElementById('ecrHomePrice').value) || 0;
+  var down  = parseFloat(document.getElementById('ecrDownPayment').value) || 0;
+  var rate  = parseFloat(document.getElementById('ecrRate').value) || 0;
+  var years = parseInt(document.getElementById('ecrTerm').value) || 30;
+  var principal = price - down;
+  var monthly;
+  if (rate === 0) {
+    monthly = principal / (years * 12);
+  } else {
+    var r = (rate / 100) / 12;
+    var n = years * 12;
+    monthly = principal * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n) - 1);
+  }
+  var totalPaid = monthly * years * 12;
+  document.getElementById('ecrMonthly').textContent = '$' + Math.round(monthly).toLocaleString();
+  document.getElementById('ecrLoan').textContent    = '$' + Math.round(principal).toLocaleString();
+  document.getElementById('ecrTotal').textContent   = '$' + Math.round(totalPaid).toLocaleString();
+}
+ecrCalc();
+</script>
+
+<style>
+@media(max-width:900px){
+  #ecr-financing > div { flex-direction:column; }
+  #ecr-financing .ecr-calculator { flex:none !important; width:100% !important; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 08 — PRE-QUALIFICATION FORM
+   GHL: Custom HTML element, placed below Financing section
+   NOTE: For GHL native form tracking, replace the <form> with
+         a GHL Form element and match the field names below.
+   ============================================================ -->
+<section id="ecr-prequal" class="ecr ecr-section" style="background:#f1f5f9;">
+
+  <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- LEFT — Benefits -->
+    <div style="flex:0 0 300px;min-width:240px;">
+      <div class="ecr-label">Get Pre-Qualified</div>
+      <h2 class="ecr-h2 ecr-h2-dark">Start Your Home<br>Buying Journey</h2>
+      <p style="font-size:15px;color:#64748b;margin-bottom:36px;line-height:1.7;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Tell us a bit about yourself and we'll help you understand your options. No obligation, no impact on credit.
+      </p>
+
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">🔒</div>
+        <div>
+          <div class="ecr-benefit-title">Soft credit pull only</div>
+          <div class="ecr-benefit-desc">No impact on your credit score.</div>
+        </div>
+      </div>
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">⚡</div>
+        <div>
+          <div class="ecr-benefit-title">Quick response</div>
+          <div class="ecr-benefit-desc">We'll get back to you within 24–48 hours.</div>
+        </div>
+      </div>
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">🏡</div>
+        <div>
+          <div class="ecr-benefit-title">Down Payment Assistance</div>
+          <div class="ecr-benefit-desc">Hometown Heroes and county-specific programs.</div>
+        </div>
+      </div>
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">🌐</div>
+        <div>
+          <div class="ecr-benefit-title">Bilingual Support</div>
+          <div class="ecr-benefit-desc">English and Spanish — no barriers.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Form -->
+    <div class="ecr-form-wrap" style="flex:1;min-width:280px;">
+      <div class="ecr-form-title">Get Pre-Qualified Today</div>
+      <div class="ecr-form-subtitle">We'll get back to you within 24–48 hours.</div>
+
+      <!-- Replace action="#" with your GHL form webhook URL -->
+      <form action="#" method="POST" onsubmit="return ecrSubmitPrequal(event)">
+
+        <div class="ecr-form-row">
+          <div class="ecr-form-group">
+            <label class="ecr-form-label">First Name</label>
+            <input class="ecr-input" type="text" name="first_name" placeholder="First name" required>
+          </div>
+          <div class="ecr-form-group">
+            <label class="ecr-form-label">Last Name</label>
+            <input class="ecr-input" type="text" name="last_name" placeholder="Last name" required>
+          </div>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Phone Number</label>
+          <input class="ecr-input" type="tel" name="phone" placeholder="(000) 000-0000" required>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Email</label>
+          <input class="ecr-input" type="email" name="email" placeholder="your@email.com">
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">State You Reside In</label>
+          <select class="ecr-select" name="state">
+            <option value="">Select...</option>
+            <option>Florida</option>
+            <option>New York</option>
+            <option>Texas</option>
+            <option>California</option>
+            <option>New Jersey</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Immigration Status</label>
+          <select class="ecr-select" name="immigration_status">
+            <option value="">Select...</option>
+            <option>US Citizen</option>
+            <option>Permanent Resident</option>
+            <option>Visa Holder</option>
+            <option>ITIN Holder</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Income Type</label>
+          <select class="ecr-select" name="income_type">
+            <option value="">Select...</option>
+            <option>Employed (W-2)</option>
+            <option>Self-Employed / Business Owner</option>
+            <option>1099 Contractor</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <button type="submit" class="ecr-btn-submit">Submit Pre-Qualification Request</button>
+
+        <!-- Success message (hidden by default) -->
+        <div id="ecrPrequalSuccess" style="display:none;margin-top:16px;padding:14px 18px;background:#dcfce7;border-radius:8px;color:#166534;font-size:14px;font-weight:600;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          ✓ Request received! We'll be in touch within 24–48 hours.
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+function ecrSubmitPrequal(e) {
+  e.preventDefault();
+  // Wire up to GHL webhook here, or let GHL's native form handle it.
+  // For now, show success message.
+  document.getElementById('ecrPrequalSuccess').style.display = 'block';
+  e.target.querySelector('button[type=submit]').textContent = 'Submitted ✓';
+  e.target.querySelector('button[type=submit]').disabled = true;
+  return false;
+}
+</script>
+
+<style>
+@media(max-width:900px){
+  #ecr-prequal > div { flex-direction:column; }
+  #ecr-prequal > div > div:first-child { flex:none !important; width:100% !important; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 09 — AGENT RECRUITING
+   GHL: Custom HTML element, placed below Pre-Qual Form
+   ============================================================ -->
+<section id="ecr-recruiting" class="ecr ecr-section" style="background:#0f1f3d;">
+
+  <div style="display:flex;gap:60px;align-items:center;flex-wrap:wrap;">
+
+    <!-- LEFT — Copy -->
+    <div style="flex:1;min-width:260px;">
+      <div class="ecr-label">For Real Estate Agents</div>
+      <h2 class="ecr-h2">Grow Your Career with <span class="ecr-accent">Elite Capital</span></h2>
+      <p class="ecr-desc">
+        Looking for a brokerage that puts agents first? At Elite Capital Realty Inc., we believe you should keep what you earn. Join our team and get the support you need — without the high splits.
+      </p>
+
+      <div class="ecr-perk-grid">
+        <div class="ecr-perk"><span class="ecr-check">✓</span> 100% Commission Model</div>
+        <div class="ecr-perk"><span class="ecr-check">✓</span> No Monthly or Desk Fees</div>
+        <div class="ecr-perk"><span class="ecr-check">✓</span> 7-Day Broker Support</div>
+        <div class="ecr-perk"><span class="ecr-check">✓</span> Training, Coaching &amp; Mentorship</div>
+      </div>
+
+      <p style="font-size:13px;color:#94a3b8;margin-bottom:28px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Not an MLS member? You can still hang your license with us.
+      </p>
+
+      <a href="#ecr-contact" class="ecr-btn ecr-btn-primary">Learn More &amp; Apply</a>
+    </div>
+
+    <!-- RIGHT — CTA box -->
+    <div style="flex:0 0 360px;min-width:260px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:40px;text-align:center;">
+      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Ready to Level Up?
+      </div>
+      <p style="font-size:14px;color:#94a3b8;margin-bottom:28px;line-height:1.6;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Join a team that values your worth. Full-service brokerage, all the support, none of the overhead.
+      </p>
+      <a href="tel:3053311152"
+         style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3b82f6;color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:50px;text-decoration:none;margin-bottom:14px;transition:background 0.2s;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        📞 Call Julio Today
+      </a>
+      <p style="font-size:13px;color:#94a3b8;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">(305) 331-1152</p>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+@media(max-width:900px){
+  #ecr-recruiting > div { flex-direction:column; }
+  #ecr-recruiting > div > div:last-child { flex:none !important; width:100% !important; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 10 — REALTOR ASSOCIATIONS / TRUST BAR
+   GHL: Custom HTML element, placed below Recruiting section
+   ============================================================ -->
+<div class="ecr ecr-assoc-bar">
+  <div class="ecr-assoc-item">Miami Association<br>of Realtors</div>
+  <div class="ecr-assoc-item">Orlando Regional<br>Realtor Association</div>
+  <div class="ecr-assoc-item">Osceola County<br>Realtor Association</div>
+  <div class="ecr-assoc-item">Space Coast Association<br>of Realtors</div>
+</div>
+
+<!-- ============================================================
+   BLOCK 11 — CONTACT SECTION
+   GHL: Custom HTML element, placed below Associations bar
+   NOTE: Replace form action with your GHL webhook URL or swap
+         the <form> entirely for a native GHL Form element.
+   ============================================================ -->
+<section id="ecr-contact" class="ecr ecr-section" style="background:#0f1f3d;">
+
+  <div class="ecr-label ecr-label-center">Contact</div>
+  <h2 class="ecr-h2" style="text-align:center;margin-bottom:56px;">
+    Let's <span class="ecr-accent">Get Started</span>
+  </h2>
+
+  <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- LEFT — Contact info -->
+    <div style="flex:0 0 320px;min-width:240px;">
+      <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Elite Capital Realty Inc.
+      </div>
+      <div style="font-size:14px;color:#94a3b8;margin-bottom:32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Julio Cardoso — Reach out anytime.
+      </div>
+
+      <div class="ecr-contact-detail">
+        <div class="ecr-contact-detail-label">Service Area</div>
+        <div class="ecr-contact-detail-value">All of Florida — Miami to Ocala</div>
+      </div>
+
+      <div class="ecr-contact-detail">
+        <div class="ecr-contact-detail-label">Phone</div>
+        <div class="ecr-contact-detail-value">
+          <a href="tel:8634193714">Office: (863) 419-3714</a><br>
+          <a href="tel:3053311152">Cell: (305) 331-1152</a>
+        </div>
+      </div>
+
+      <div class="ecr-contact-detail">
+        <div class="ecr-contact-detail-label">Email</div>
+        <div class="ecr-contact-detail-value">
+          <a href="mailto:elitecapitalrealtyinc@gmail.com">elitecapitalrealtyinc@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Message form -->
+    <div class="ecr-form-dark" style="flex:1;min-width:280px;">
+      <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:24px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Send a Message
+      </div>
+
+      <!-- Replace action="#" with your GHL webhook URL -->
+      <form action="#" method="POST" onsubmit="return ecrSubmitContact(event)">
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">Name *</label>
+          <input class="ecr-input ecr-input-dark" type="text" name="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">Phone *</label>
+          <input class="ecr-input ecr-input-dark" type="tel" name="phone" placeholder="(000) 000-0000" required>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">Email</label>
+          <input class="ecr-input ecr-input-dark" type="email" name="email" placeholder="your@email.com">
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label ecr-form-label-light">How can we help? *</label>
+          <textarea class="ecr-textarea ecr-textarea-dark" name="message" placeholder="Tell us about your real estate needs..." required></textarea>
+        </div>
+
+        <button type="submit" class="ecr-btn-submit">Send Message</button>
+
+        <div id="ecrContactSuccess" style="display:none;margin-top:14px;padding:14px 18px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:8px;color:#93c5fd;font-size:14px;font-weight:600;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          ✓ Message sent! Julio will reach out soon.
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+function ecrSubmitContact(e) {
+  e.preventDefault();
+  document.getElementById('ecrContactSuccess').style.display = 'block';
+  e.target.querySelector('button[type=submit]').textContent = 'Sent ✓';
+  e.target.querySelector('button[type=submit]').disabled = true;
+  return false;
+}
+</script>
+
+<style>
+@media(max-width:900px){
+  #ecr-contact > div:last-child { flex-direction:column; }
+  #ecr-contact > div:last-child > div:first-child { flex:none !important; width:100% !important; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 12 — FOOTER
+   GHL: Custom HTML element, last element on the page
+        (below Contact section)
+   ============================================================ -->
+<footer class="ecr" style="background:#0a1628;border-top:1px solid rgba(255,255,255,0.08);padding:60px 80px 32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- 3-column grid -->
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+
+    <!-- Brand col -->
+    <div style="max-width:320px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff;margin-bottom:14px;">
+        <div style="width:44px;height:44px;background:#152647;border:1px solid rgba(59,130,246,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#3b82f6;flex-shrink:0;">ECR</div>
+        Elite Capital Realty Inc.
+      </div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.7;">
+        Julio Cardoso · Over 23 years helping families find their home across South and Central Florida.
+      </p>
+    </div>
+
+    <!-- Pages col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Pages</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="/" style="font-size:14px;color:#94a3b8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
+        <li><a href="/properties" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Properties</a></li>
+        <li><a href="/meet-our-agents" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Meet Our Agents</a></li>
+        <li><a href="/blog" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#94a3b8'">Blog</a></li>
+        <li><a href="/join-our-team" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Join Our Team</a></li>
+      </ul>
+    </div>
+
+    <!-- Services col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Services</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Residential Sales</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Commercial Real Estate</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Property Management</a></li>
+        <li><a href="#ecr-financing" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Mortgage &amp; Loans</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:#94a3b8;">
+    <span>© 2026 Elite Capital Realty Inc. All rights reserved.</span>
+    <span>
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Terms &amp; Conditions</a>
+      &nbsp;·&nbsp;
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
+    </span>
+    <span>(305) 331-1152 · Serving all of Florida</span>
+  </div>
+
+</footer>
+
+<!-- Smooth scroll for all anchor links -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+
+<style>
+@media(max-width:900px){
+  footer > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+  footer > div:last-child {
+    flex-direction: column;
+    text-align: center;
+  }
+  footer { padding: 48px 24px 24px !important; }
+}
+</style>

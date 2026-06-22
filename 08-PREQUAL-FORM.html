@@ -1,0 +1,145 @@
+<!-- ============================================================
+   BLOCK 08 — PRE-QUALIFICATION FORM
+   GHL: Custom HTML element, placed below Financing section
+   NOTE: For GHL native form tracking, replace the <form> with
+         a GHL Form element and match the field names below.
+   ============================================================ -->
+<section id="ecr-prequal" class="ecr ecr-section" style="background:#f1f5f9;">
+
+  <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- LEFT — Benefits -->
+    <div style="flex:0 0 300px;min-width:240px;">
+      <div class="ecr-label">Get Pre-Qualified</div>
+      <h2 class="ecr-h2 ecr-h2-dark">Start Your Home<br>Buying Journey</h2>
+      <p style="font-size:15px;color:#64748b;margin-bottom:36px;line-height:1.7;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+        Tell us a bit about yourself and we'll help you understand your options. No obligation, no impact on credit.
+      </p>
+
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">🔒</div>
+        <div>
+          <div class="ecr-benefit-title">Soft credit pull only</div>
+          <div class="ecr-benefit-desc">No impact on your credit score.</div>
+        </div>
+      </div>
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">⚡</div>
+        <div>
+          <div class="ecr-benefit-title">Quick response</div>
+          <div class="ecr-benefit-desc">We'll get back to you within 24–48 hours.</div>
+        </div>
+      </div>
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">🏡</div>
+        <div>
+          <div class="ecr-benefit-title">Down Payment Assistance</div>
+          <div class="ecr-benefit-desc">Hometown Heroes and county-specific programs.</div>
+        </div>
+      </div>
+      <div class="ecr-benefit">
+        <div class="ecr-benefit-icon">🌐</div>
+        <div>
+          <div class="ecr-benefit-title">Bilingual Support</div>
+          <div class="ecr-benefit-desc">English and Spanish — no barriers.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Form -->
+    <div class="ecr-form-wrap" style="flex:1;min-width:280px;">
+      <div class="ecr-form-title">Get Pre-Qualified Today</div>
+      <div class="ecr-form-subtitle">We'll get back to you within 24–48 hours.</div>
+
+      <!-- Replace action="#" with your GHL form webhook URL -->
+      <form action="#" method="POST" onsubmit="return ecrSubmitPrequal(event)">
+
+        <div class="ecr-form-row">
+          <div class="ecr-form-group">
+            <label class="ecr-form-label">First Name</label>
+            <input class="ecr-input" type="text" name="first_name" placeholder="First name" required>
+          </div>
+          <div class="ecr-form-group">
+            <label class="ecr-form-label">Last Name</label>
+            <input class="ecr-input" type="text" name="last_name" placeholder="Last name" required>
+          </div>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Phone Number</label>
+          <input class="ecr-input" type="tel" name="phone" placeholder="(000) 000-0000" required>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Email</label>
+          <input class="ecr-input" type="email" name="email" placeholder="your@email.com">
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">State You Reside In</label>
+          <select class="ecr-select" name="state">
+            <option value="">Select...</option>
+            <option>Florida</option>
+            <option>New York</option>
+            <option>Texas</option>
+            <option>California</option>
+            <option>New Jersey</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Immigration Status</label>
+          <select class="ecr-select" name="immigration_status">
+            <option value="">Select...</option>
+            <option>US Citizen</option>
+            <option>Permanent Resident</option>
+            <option>Visa Holder</option>
+            <option>ITIN Holder</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="ecr-form-group">
+          <label class="ecr-form-label">Income Type</label>
+          <select class="ecr-select" name="income_type">
+            <option value="">Select...</option>
+            <option>Employed (W-2)</option>
+            <option>Self-Employed / Business Owner</option>
+            <option>1099 Contractor</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <button type="submit" class="ecr-btn-submit">Submit Pre-Qualification Request</button>
+
+        <!-- Success message (hidden by default) -->
+        <div id="ecrPrequalSuccess" style="display:none;margin-top:16px;padding:14px 18px;background:#dcfce7;border-radius:8px;color:#166534;font-size:14px;font-weight:600;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          ✓ Request received! We'll be in touch within 24–48 hours.
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+function ecrSubmitPrequal(e) {
+  e.preventDefault();
+  // Wire up to GHL webhook here, or let GHL's native form handle it.
+  // For now, show success message.
+  document.getElementById('ecrPrequalSuccess').style.display = 'block';
+  e.target.querySelector('button[type=submit]').textContent = 'Submitted ✓';
+  e.target.querySelector('button[type=submit]').disabled = true;
+  return false;
+}
+</script>
+
+<style>
+@media(max-width:900px){
+  #ecr-prequal > div { flex-direction:column; }
+  #ecr-prequal > div > div:first-child { flex:none !important; width:100% !important; }
+}
+</style>

@@ -1,0 +1,158 @@
+<!-- ============================================================
+   BLOCK 01 — HEADER / NAV
+   GHL: Add a "Custom Code" element at the TOP of your page
+        (above all sections). Paste this entire snippet.
+   ============================================================ -->
+
+<!-- Shared CSS must be loaded first — paste 00-CUSTOM-CSS.css
+     into Page Settings → Custom CSS before using any blocks.    -->
+
+<style>
+.ecr-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #0a1628;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+.ecr-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.ecr-nav-logo-badge {
+  width: 44px; height: 44px;
+  background: #152647;
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+.ecr-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.ecr-nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.ecr-nav-links a:hover,
+.ecr-nav-links a.active { opacity: 1; }
+.ecr-nav-cta {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.ecr-nav-cta:hover { background: #2563eb; color: #fff; }
+
+/* Mobile hamburger */
+.ecr-nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.ecr-nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.ecr-nav-mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  background: #0a1628;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 24px 24px;
+  gap: 16px;
+}
+.ecr-nav-mobile.open { display: flex; }
+.ecr-nav-mobile a {
+  font-size: 16px; font-weight: 500;
+  color: #fff; text-decoration: none;
+  opacity: 0.85; padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ecr-nav-mobile a:hover { opacity: 1; }
+
+/* Push page content below fixed nav */
+body { padding-top: 64px; }
+
+/* Full-width breakout — overrides GHL's ~1150px column wrapper */
+html, body { overflow-x: hidden !important; }
+section.ecr, footer.ecr, .ecr-ticker, .ecr-assoc-bar {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+  .ecr-nav { padding: 0 20px; }
+  .ecr-nav-links { display: none; }
+  .ecr-nav-toggle { display: flex; }
+}
+</style>
+
+<nav class="ecr-nav">
+  <a href="/" class="ecr-nav-logo">
+    
+    <img src="https://tlt-image-server.lehr007.workers.dev/images/logo-ecr" alt="Elite Capital Realty Inc." style="height:44px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ecr-nav-logo-badge" style="display:none;">ECR</div>
+  </a>
+
+  <ul class="ecr-nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/properties">Properties</a></li>
+    <li><a href="/meet-our-agents">Meet Our Agents</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/join-our-team">Join Our Team</a></li>
+  </ul>
+
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="ecr-nav-toggle" onclick="document.getElementById('ecrMobileNav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="tel:3053311152" class="ecr-nav-cta">Call (305) 331-1152</a>
+  </div>
+</nav>
+
+<!-- Mobile dropdown -->
+<div id="ecrMobileNav" class="ecr-nav-mobile">
+  <a href="/">Home</a>
+  <a href="/properties">Properties</a>
+  <a href="/meet-our-agents">Meet Our Agents</a>
+  <a href="/blog">Blog</a>
+  <a href="/join-our-team">Join Our Team</a>
+  <a href="tel:3053311152" style="color:#3b82f6;opacity:1;font-weight:700;">(305) 331-1152</a>
+</div>

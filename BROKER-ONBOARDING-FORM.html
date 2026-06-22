@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brokerage Setup — GHL Subaccount Onboarding</title>
+<style>
+  :root {
+    --blue:#3b82f6; --navy:#0f1f3d; --dark:#0a1628;
+    --green:#22c55e; --red:#ef4444; --gray:#94a3b8;
+    --surface:rgba(255,255,255,0.05); --border:rgba(255,255,255,0.1);
+    --radius:12px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--dark);color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;min-height:100vh;padding:40px 16px 80px;}
+  .wrap{max-width:860px;margin:0 auto;}
+
+  /* Header */
+  .header{text-align:center;margin-bottom:48px;}
+  .logo-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:100px;padding:6px 18px;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  h1{font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px;}
+  .subtitle{color:var(--gray);font-size:16px;line-height:1.6;}
+  /* Dashboard nav */
+  .dash-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
+  .dash-nav a{font-size:12px;padding:6px 14px;border-radius:50px;border:1px solid var(--border);color:var(--gray);text-decoration:none;transition:all .2s;white-space:nowrap;}
+  .dash-nav a:hover{border-color:var(--blue);color:#fff;}
+  .dash-nav a.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+  /* Info banner */
+  .info-banner{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:14px 20px;margin-bottom:32px;font-size:13px;color:#93c5fd;line-height:1.6;}
+
+  /* Mode toggle */
+  .mode-toggle{display:flex;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:4px;margin:0 auto 40px;width:fit-content;}
+  .mode-btn{padding:8px 24px;border-radius:50px;border:none;background:transparent;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
+  .mode-btn.active{background:var(--blue);color:#fff;}
+
+  /* Sections */
+  .section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:24px;}
+  .section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:24px;display:flex;align-items:center;gap:10px;}
+  .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* Form grid */
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .form-grid.single{grid-template-columns:1fr;}
+  .form-grid.triple{grid-template-columns:1fr 1fr 1fr;}
+  @media(max-width:640px){.form-grid,.form-grid.triple{grid-template-columns:1fr;}}
+
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;}
+  label .req{color:var(--blue);margin-left:2px;}
+  label .key{font-size:10px;font-weight:400;color:rgba(148,163,184,.5);font-family:monospace;text-transform:none;letter-spacing:0;display:block;margin-top:2px;}
+  input,select,textarea{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;color:#fff;font-size:14px;padding:11px 14px;width:100%;transition:border .2s;font-family:inherit;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);}
+  input::placeholder,textarea::placeholder{color:rgba(148,163,184,.5);}
+  select option{background:#1e3a5f;color:#fff;}
+  textarea{resize:vertical;min-height:80px;}
+  .hint{font-size:11px;color:rgba(148,163,184,.6);margin-top:4px;}
+
+  /* Color row */
+  .color-row{display:flex;align-items:center;gap:10px;}
+  .color-row input[type=color]{width:44px;height:44px;padding:4px;cursor:pointer;border-radius:6px;flex-shrink:0;}
+  .color-row input[type=text]{flex:1;}
+
+  /* Submit */
+  .submit-area{text-align:center;margin-top:40px;}
+  .btn-submit{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:16px 48px;font-size:16px;font-weight:700;cursor:pointer;transition:background .2s;display:inline-flex;align-items:center;gap:10px;}
+  .btn-submit:hover{background:#2563eb;}
+  .btn-submit:disabled{opacity:.6;cursor:not-allowed;}
+
+  /* Results */
+  #results{margin-top:32px;display:none;}
+  .result-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;margin-bottom:8px;font-size:14px;}
+  .result-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);}
+  .result-err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);}
+  .result-icon{font-size:16px;flex-shrink:0;}
+  .result-name{font-weight:600;min-width:220px;}
+  .result-val{color:var(--gray);font-size:12px;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px;}
+  .summary{text-align:center;padding:24px;background:var(--surface);border-radius:var(--radius);margin-bottom:24px;border:1px solid var(--border);}
+  .summary .big{font-size:40px;font-weight:900;color:var(--green);}
+  .summary p{color:var(--gray);margin-top:8px;}
+
+  /* API section */
+  .api-section{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:var(--radius);padding:24px;margin-bottom:24px;}
+  .api-section label{color:var(--blue);}
+  .api-toggle{font-size:12px;color:var(--blue);cursor:pointer;text-decoration:underline;margin-top:8px;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Dashboard nav -->
+  <div class="dash-nav">
+    <a href="/broker-setup/pages" target="_blank" class="primary">📋 Page Builder Copy Tool</a>
+    <a href="https://thelistingteamproxy-staging.lehr007.workers.dev/" target="_blank">📊 Staging Dashboard</a>
+    <a href="https://thelistingteamproxy.lehr007.workers.dev/" target="_blank">🚀 Production Dashboard</a>
+    <a href="https://tlt-image-server.lehr007.workers.dev/admin" target="_blank">🖼️ Image Server</a>
+    <a href="https://app.gohighlevel.com" target="_blank">🏢 Open GHL</a>
+  </div>
+
+  <!-- Info banner -->
+  <div class="info-banner">
+    ✅ <strong>This form writes directly to GoHighLevel.</strong> Each field maps to a GHL Custom Value in your subaccount. On submit, only fields you fill in are updated — blank fields are skipped. Values appear instantly in GHL under <em>Settings → Custom Values</em> and are available as <code>{{custom_values.*}}</code> merge tags in any GHL page, email, or workflow.
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-badge"><span class="dot"></span> GHL Brokerage Setup</div>
+    <h1>Broker Onboarding Form</h1>
+    <p class="subtitle">Fill in the details below to set up or update a GHL subaccount.<br>All custom values are pushed directly to GoHighLevel via API.</p>
+  </div>
+
+  <!-- Mode toggle -->
+  <div class="mode-toggle">
+    <button class="mode-btn active" onclick="setMode('new')">➕ New Subaccount</button>
+    <button class="mode-btn" onclick="setMode('update')">✏️ Update Existing</button>
+  </div>
+
+  <form id="brokerForm" onsubmit="handleSubmit(event)">
+
+    <!-- API Credentials -->
+    <div class="api-section">
+      <div class="section-title">GHL API Credentials</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Location ID <span class="req">*</span><span class="key">The subaccount location ID</span></label>
+          <input type="text" id="locationId" placeholder="7ifl4pT5djNDbS2PhC1y" required>
+        </div>
+        <div class="field">
+          <label>PIT / API Key <span class="req">*</span><span class="key">Private Integration Token</span></label>
+          <input type="password" id="pitKey" placeholder="pit-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" required>
+          <span class="hint">Found in GHL → Settings → Developer → API Keys</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Broker Info -->
+    <div class="section">
+      <div class="section-title">Broker / Agent Info</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Broker / Agent Full Name <span class="req">*</span><span class="key">{{custom_values.broker_agent_name}}</span></label>
+          <input type="text" id="brokerName" name="brokerName" placeholder="Julio Cardoso" required>
+        </div>
+        <div class="field">
+          <label>Agent First Name<span class="key">{{custom_values.agents_first_name}}</span></label>
+          <input type="text" id="agentFirst" name="agentFirst" placeholder="Julio">
+        </div>
+        <div class="field">
+          <label>Realtor Company <span class="req">*</span><span class="key">{{custom_values.realtor_company}}</span></label>
+          <input type="text" id="company" name="company" placeholder="Elite Capital Realty Inc." required>
+        </div>
+        <div class="field">
+          <label>Business Name<span class="key">{{custom_values.business_name}}</span></label>
+          <input type="text" id="bizName" name="bizName" placeholder="Elite Capital Realty Inc.">
+        </div>
+        <div class="field">
+          <label>Cell Phone<span class="key">{{custom_values.realtor_cell_phone_number}}</span></label>
+          <input type="tel" id="cellPhone" name="cellPhone" placeholder="(305) 331-1152">
+        </div>
+        <div class="field">
+          <label>Mobile Phone<span class="key">{{custom_values.broker_agent_mobile_phone}}</span></label>
+          <input type="tel" id="mobilePhone" name="mobilePhone" placeholder="(305) 331-1152">
+        </div>
+        <div class="field">
+          <label>Notifications Email<span class="key">{{custom_values.notifications_email_for_client}}</span></label>
+          <input type="email" id="notifEmail" name="notifEmail" placeholder="broker@email.com">
+        </div>
+        <div class="field">
+          <label>From Email<span class="key">{{custom_values.from_email}}</span></label>
+          <input type="email" id="fromEmail" name="fromEmail" placeholder="broker@email.com">
+        </div>
+        <div class="field">
+          <label>Realtor License #<span class="key">{{custom_values.realtor_mls}}</span></label>
+          <input type="text" id="license" name="license" placeholder="BK3456789">
+        </div>
+        <div class="field">
+          <label>Company License #<span class="key">{{custom_values.company_license}}</span></label>
+          <input type="text" id="companyLicense" name="companyLicense" placeholder="CQ1234567">
+        </div>
+        <div class="field">
+          <label>Calendar User 1 Name<span class="key">{{custom_values.user_1_name}}</span></label>
+          <input type="text" id="calUser1" name="calUser1" placeholder="Julio Cardoso">
+        </div>
+        <div class="field">
+          <label>Calendar Link<span class="key">{{custom_values.calendar_link}}</span></label>
+          <input type="url" id="calLink" name="calLink" placeholder="https://...">
+        </div>
+        <div class="field full">
+          <label>Open House Address<span class="key">{{custom_values.open_house_address}}</span></label>
+          <input type="text" id="openHouse" name="openHouse" placeholder="123 Main St, Miami FL 33101">
+        </div>
+        <div class="field full">
+          <label>Hours of Operation<span class="key">{{custom_values.hours_of_operation}}</span></label>
+          <input type="text" id="hours" name="hours" placeholder="Mon–Fri 9am–6pm, Sat 10am–4pm">
+        </div>
+        <div class="field full">
+          <label>Target Audience Callout<span class="key">{{custom_values.target_audience_callout}}</span></label>
+          <input type="text" id="audience" name="audience" placeholder="First-time buyers, investors, and families across South Florida">
+        </div>
+      </div>
+    </div>
+
+    <!-- Media / Branding -->
+    <div class="section">
+      <div class="section-title">Media & Branding</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Logo URL<span class="key">{{custom_values.logo_link}}</span></label>
+          <input type="url" id="logoLink" name="logoLink" placeholder="https://tlt-image-server.../images/logo">
+          <span class="hint">Hosted image URL (tlt-image-server, GHL CDN, etc.)</span>
+        </div>
+        <div class="field">
+          <label>Profile / Headshot URL<span class="key">{{custom_values.profile_picture}}</span></label>
+          <input type="url" id="profilePic" name="profilePic" placeholder="https://tlt-image-server.../images/headshot">
+        </div>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="section-title" style="font-size:11px;margin-bottom:16px;">Brand Colors</div>
+        <div class="form-grid triple">
+          <div class="field">
+            <label>Primary Color<span class="key">{{custom_values.branding_color_1}}</span></label>
+            <div class="color-row">
+              <input type="color" id="color1Picker" value="#3b82f6" oninput="document.getElementById('color1').value=this.value">
+              <input type="text" id="color1" placeholder="#3b82f6" oninput="document.getElementById('color1Picker').value=this.value">
+            </div>
+          </div>
+          <div class="field">
+            <label>Secondary Color<span class="key">{{custom_values.branding_color_2}}</span></label>
+            <div class="color-row">
+              <input type="color" id="color2Picker" value="#0f1f3d" oninput="document.getElementById('color2').value=this.value">
+              <input type="text" id="color2" placeholder="#0f1f3d" oninput="document.getElementById('color2Picker').value=this.value">
+            </div>
+          </div>
+          <div class="field">
+            <label>Background Color<span class="key">{{custom_values.branding_color_3}}</span></label>
+            <div class="color-row">
+              <input type="color" id="color3Picker" value="#0a1628" oninput="document.getElementById('color3').value=this.value">
+              <input type="text" id="color3" placeholder="#0a1628" oninput="document.getElementById('color3Picker').value=this.value">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDX Broker Links -->
+    <div class="section">
+      <div class="section-title">IDXBroker / IDXAddons Links</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Primary City Link<span class="key">{{custom_values.idxbroker_primary_city_link_idxaddons}}</span></label>
+          <input type="url" id="idxCity1" name="idxCity1" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Secondary City Link<span class="key">{{custom_values.idxbroker_secondary_city_link_idxaddons}}</span></label>
+          <input type="url" id="idxCity2" name="idxCity2" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Tertiary City Link<span class="key">{{custom_values.idxbroker_tertiary_city_link_idxaddons}}</span></label>
+          <input type="url" id="idxCity3" name="idxCity3" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Home Valuation Link<span class="key">{{custom_values.idxbroker_home_valuation_link_idxaddons}}</span></label>
+          <input type="url" id="idxHomeVal" name="idxHomeVal" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Map Search Link<span class="key">{{custom_values.idxbroker_map_search_link_idxaddons}}</span></label>
+          <input type="url" id="idxMapSearch" name="idxMapSearch" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Market Report Link<span class="key">{{custom_values.idxbroker_market_report_link_idxaddons}}</span></label>
+          <input type="url" id="idxMarketReport" name="idxMarketReport" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Mortgage Link<span class="key">{{custom_values.idxbroker_mortgage_link_idxaddons}}</span></label>
+          <input type="url" id="idxMortgage" name="idxMortgage" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Basic Search Link<span class="key">{{custom_values.idxbroker_basic_search_link_idxaddons}}</span></label>
+          <input type="url" id="idxBasic" name="idxBasic" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Advanced Search Link<span class="key">{{custom_values.idxbroker_advanced_search_link_idxaddons}}</span></label>
+          <input type="url" id="idxAdvanced" name="idxAdvanced" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Contact Link<span class="key">{{custom_values.idxbroker_contact_link_idxaddons}}</span></label>
+          <input type="url" id="idxContact" name="idxContact" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>IDX City 1<span class="key">{{custom_values.idx_city_1}}</span></label>
+          <input type="text" id="idxCityName1" name="idxCityName1" placeholder="Miami">
+        </div>
+        <div class="field">
+          <label>IDX City 2<span class="key">{{custom_values.idx_city_2}}</span></label>
+          <input type="text" id="idxCityName2" name="idxCityName2" placeholder="Fort Lauderdale">
+        </div>
+        <div class="field">
+          <label>IDX City 3<span class="key">{{custom_values.idx_city_3}}</span></label>
+          <input type="text" id="idxCityName3" name="idxCityName3" placeholder="Boca Raton">
+        </div>
+        <div class="field">
+          <label>IDXAddons Primary Color<span class="key">{{custom_values.idxaddons_design_primary_color}}</span></label>
+          <input type="text" id="idxColor1" name="idxColor1" placeholder="#3b82f6">
+        </div>
+        <div class="field">
+          <label>IDXAddons Secondary Color<span class="key">{{custom_values.idxaddons_design_secondary_color}}</span></label>
+          <input type="text" id="idxColor2" name="idxColor2" placeholder="#0f1f3d">
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing -->
+    <div class="section">
+      <div class="section-title">Marketing & Promotions</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Website Booking Page URL<span class="key">{{custom_values.marketing__website_booking_page_url}}</span></label>
+          <input type="url" id="bookingUrl" name="bookingUrl" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>New Booking Thank You URL<span class="key">{{custom_values.new_booking_ty_url}}</span></label>
+          <input type="url" id="tyUrl" name="tyUrl" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Promotion Name<span class="key">{{custom_values.promotion_name}}</span></label>
+          <input type="text" id="promoName" name="promoName" placeholder="Spring Buyer Special">
+        </div>
+        <div class="field">
+          <label>Promo Referral ID<span class="key">{{custom_values.promo_referral_id}}</span></label>
+          <input type="text" id="promoRef" name="promoRef" placeholder="REF-001">
+        </div>
+        <div class="field">
+          <label>Promo Affiliate Link<span class="key">{{custom_values.promo_affiliate_link}}</span></label>
+          <input type="url" id="promoAff" name="promoAff" placeholder="https://...">
+        </div>
+        <div class="field">
+          <label>Affiliate Email<span class="key">{{custom_values.affiliate_email}}</span></label>
+          <input type="email" id="affEmail" name="affEmail" placeholder="affiliate@email.com">
+        </div>
+        <div class="field">
+          <label>Affiliate From Name<span class="key">{{custom_values.affiliate_from_name}}</span></label>
+          <input type="text" id="affName" name="affName" placeholder="Julio Cardoso">
+        </div>
+        <div class="field">
+          <label>Domain Auth Key<span class="key">{{custom_values.domain_authentication_key}}</span></label>
+          <input type="text" id="domainKey" name="domainKey" placeholder="dk_...">
+        </div>
+        <div class="field">
+          <label>Twilio Number<span class="key">{{custom_values.custom_values_twilio_number}}</span></label>
+          <input type="tel" id="twilioNum" name="twilioNum" placeholder="+19545551234">
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span id="submitIcon">🚀</span>
+        <span id="submitText">Push to GoHighLevel</span>
+      </button>
+      <p style="margin-top:14px;font-size:13px;color:var(--gray);">Only non-empty fields will be updated. All changes go live immediately.</p>
+    </div>
+
+  </form>
+
+  <!-- Results -->
+  <div id="results">
+    <div class="summary">
+      <div class="big" id="summaryCount">0</div>
+      <p id="summaryText">custom values updated in GoHighLevel</p>
+    </div>
+    <div id="resultList"></div>
+  </div>
+
+</div>
+
+<script>
+// ── Field map: formFieldId → { cvId, name } ──
+// cvId is fetched dynamically via API so this form works for ANY subaccount
+const FIELD_MAP = [
+  { fieldId:'brokerName',     name:'BROKER/AGENT NAME' },
+  { fieldId:'agentFirst',     name:'AGENTS FIRST NAME' },
+  { fieldId:'company',        name:'REALTOR COMPANY' },
+  { fieldId:'bizName',        name:'Business name' },
+  { fieldId:'cellPhone',      name:'REALTOR CELL PHONE NUMBER' },
+  { fieldId:'mobilePhone',    name:'BROKER/AGENT MOBILE PHONE' },
+  { fieldId:'notifEmail',     name:'NOTIFICATIONS EMAIL FOR CLIENT' },
+  { fieldId:'fromEmail',      name:'FROM EMAIL' },
+  { fieldId:'license',        name:'REALTOR LICENSE #' },
+  { fieldId:'companyLicense', name:'COMPANY LICENSE#' },
+  { fieldId:'calUser1',       name:'Z - Calendar: User 1 Name' },
+  { fieldId:'calLink',        name:'CALENDAR LINK' },
+  { fieldId:'openHouse',      name:'OPEN HOUSE ADDRESS' },
+  { fieldId:'hours',          name:'Hours of Operation' },
+  { fieldId:'audience',       name:'Target Audience Callout' },
+  { fieldId:'logoLink',       name:'LOGO LINK' },
+  { fieldId:'profilePic',     name:'PROFILE PICTURE' },
+  { fieldId:'color1',         name:'BRANDING COLOR 1' },
+  { fieldId:'color2',         name:'BRANDING COLOR 2' },
+  { fieldId:'color3',         name:'BRANDING COLOR 3' },
+  { fieldId:'idxCity1',       name:'IDXBroker Primary City Link IDXAddons' },
+  { fieldId:'idxCity2',       name:'IDXBroker Secondary City Link IDXAddons' },
+  { fieldId:'idxCity3',       name:'IDXBroker Tertiary City Link IDXAddons' },
+  { fieldId:'idxHomeVal',     name:'IDXBroker Home Valuation Link IDXAddons' },
+  { fieldId:'idxMapSearch',   name:'IDXBroker Map Search Link IDXAddons' },
+  { fieldId:'idxMarketReport',name:'IDXBroker Market Report Link IDXAddons' },
+  { fieldId:'idxMortgage',    name:'IDXBroker Mortgage Link IDXAddons' },
+  { fieldId:'idxBasic',       name:'IDXBroker Basic Search Link IDXAddons' },
+  { fieldId:'idxAdvanced',    name:'IDXBroker Advanced Search Link IDXAddons' },
+  { fieldId:'idxContact',     name:'IDXBroker Contact Link IDXAddons' },
+  { fieldId:'idxCityName1',   name:'IDX City 1' },
+  { fieldId:'idxCityName2',   name:'IDX City 2' },
+  { fieldId:'idxCityName3',   name:'IDX City 3' },
+  { fieldId:'idxColor1',      name:'IDXAddons Design Primary Color' },
+  { fieldId:'idxColor2',      name:'IDXAddons Design Secondary Color' },
+  { fieldId:'bookingUrl',     name:'Marketing - Website Booking Page URL' },
+  { fieldId:'tyUrl',          name:'Marketing - New Booking Thank You Page URL' },
+  { fieldId:'promoName',      name:'Promotion Name' },
+  { fieldId:'promoRef',       name:'Promo Referral Id' },
+  { fieldId:'promoAff',       name:'Promo Affiliate Link' },
+  { fieldId:'affEmail',       name:'Affiliate Email' },
+  { fieldId:'affName',        name:'Affiliate FROM Name' },
+  { fieldId:'domainKey',      name:'Domain Authentication Key' },
+  { fieldId:'twilioNum',      name:'CUSTOM VALUES TWILIO NUMBER' },
+];
+
+let mode = 'new';
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.textContent.includes(m === 'new' ? 'New' : 'Update')));
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const locationId = document.getElementById('locationId').value.trim();
+  const pit = document.getElementById('pitKey').value.trim();
+  if (!locationId || !pit) { alert('Location ID and API Key are required.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  document.getElementById('submitIcon').textContent = '⏳';
+  document.getElementById('submitText').textContent = 'Fetching custom value IDs…';
+
+  // 1. Fetch the CV index for this location
+  let cvIndex = {};
+  try {
+    const resp = await fetch(`https://services.leadconnectorhq.com/locations/${locationId}/customValues`, {
+      headers: { 'Authorization': `Bearer ${pit}`, 'Version': '2021-07-28' }
+    });
+    const data = await resp.json();
+    for (const cv of (data.customValues || [])) {
+      cvIndex[cv.name] = cv.id;
+    }
+  } catch(err) {
+    alert('Failed to fetch custom values: ' + err.message);
+    btn.disabled = false;
+    return;
+  }
+
+  document.getElementById('submitText').textContent = 'Pushing values to GHL…';
+
+  // 2. For each non-empty field, PUT to GHL
+  const results = [];
+  for (const {fieldId, name} of FIELD_MAP) {
+    const el = document.getElementById(fieldId);
+    if (!el) continue;
+    const value = el.value.trim();
+    if (!value) continue; // skip empty
+
+    const cvId = cvIndex[name];
+    if (!cvId) {
+      results.push({ name, value, status: 'skip', msg: 'Field not found in this subaccount' });
+      continue;
+    }
+
+    try {
+      const r = await fetch(`https://services.leadconnectorhq.com/locations/${locationId}/customValues/${cvId}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${pit}`,
+          'Version': '2021-07-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, value })
+      });
+      const ok = r.status === 200;
+      results.push({ name, value, status: ok ? 'ok' : 'err', code: r.status });
+    } catch(err) {
+      results.push({ name, value, status: 'err', msg: err.message });
+    }
+  }
+
+  // 3. Render results
+  const okCount = results.filter(r => r.status === 'ok').length;
+  document.getElementById('summaryCount').textContent = okCount;
+  document.getElementById('summaryText').textContent = `of ${results.filter(r=>r.status!=='skip').length} custom values updated in GoHighLevel`;
+
+  const list = document.getElementById('resultList');
+  list.innerHTML = '';
+  for (const r of results) {
+    if (r.status === 'skip') continue;
+    const cls = r.status === 'ok' ? 'result-ok' : 'result-err';
+    const icon = r.status === 'ok' ? '✅' : '❌';
+    list.innerHTML += `<div class="result-item ${cls}">
+      <span class="result-icon">${icon}</span>
+      <span class="result-name">${r.name}</span>
+      <span class="result-val">${r.value}</span>
+    </div>`;
+  }
+
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+
+  btn.disabled = false;
+  document.getElementById('submitIcon').textContent = '✅';
+  document.getElementById('submitText').textContent = 'Done! Push Again';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Environment
+.env
+.env.local
+*.pem
+*.key
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+.tmp/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Backups
+*.backup
+*~
+*.swp

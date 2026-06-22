@@ -1,0 +1,466 @@
+<!-- ============================================================
+   BLOCK 01 — HEADER / NAV
+   GHL: Add a "Custom Code" element at the TOP of your page
+        (above all sections). Paste this entire snippet.
+   ============================================================ -->
+
+<!-- Shared CSS must be loaded first — paste 00-CUSTOM-CSS.css
+     into Page Settings → Custom CSS before using any blocks.    -->
+
+<style>
+.ecr-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #0a1628;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+.ecr-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.ecr-nav-logo-badge {
+  width: 44px; height: 44px;
+  background: #152647;
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+.ecr-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.ecr-nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.ecr-nav-links a:hover,
+.ecr-nav-links a.active { opacity: 1; }
+.ecr-nav-cta {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.ecr-nav-cta:hover { background: #2563eb; color: #fff; }
+
+/* Mobile hamburger */
+.ecr-nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.ecr-nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.ecr-nav-mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  background: #0a1628;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 24px 24px;
+  gap: 16px;
+}
+.ecr-nav-mobile.open { display: flex; }
+.ecr-nav-mobile a {
+  font-size: 16px; font-weight: 500;
+  color: #fff; text-decoration: none;
+  opacity: 0.85; padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ecr-nav-mobile a:hover { opacity: 1; }
+
+/* Push page content below fixed nav */
+body { padding-top: 64px; }
+
+/* Full-width breakout — overrides GHL's ~1150px column wrapper */
+html, body { overflow-x: hidden !important; }
+section.ecr, footer.ecr, .ecr-ticker, .ecr-assoc-bar {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+  .ecr-nav { padding: 0 20px; }
+  .ecr-nav-links { display: none; }
+  .ecr-nav-toggle { display: flex; }
+}
+</style>
+
+<nav class="ecr-nav">
+  <a href="/" class="ecr-nav-logo">
+    
+    <img src="https://tlt-image-server.lehr007.workers.dev/images/logo-ecr" alt="Elite Capital Realty Inc." style="height:44px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ecr-nav-logo-badge" style="display:none;">ECR</div>
+  </a>
+
+  <ul class="ecr-nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/properties">Properties</a></li>
+    <li><a href="/meet-our-agents">Meet Our Agents</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/join-our-team">Join Our Team</a></li>
+  </ul>
+
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="ecr-nav-toggle" onclick="document.getElementById('ecrMobileNav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="tel:3053311152" class="ecr-nav-cta">Call (305) 331-1152</a>
+  </div>
+</nav>
+
+<!-- Mobile dropdown -->
+<div id="ecrMobileNav" class="ecr-nav-mobile">
+  <a href="/">Home</a>
+  <a href="/properties">Properties</a>
+  <a href="/meet-our-agents">Meet Our Agents</a>
+  <a href="/blog">Blog</a>
+  <a href="/join-our-team">Join Our Team</a>
+  <a href="tel:3053311152" style="color:#3b82f6;opacity:1;font-weight:700;">(305) 331-1152</a>
+</div>
+
+<!-- ============================================================
+   PAGE — PROPERTIES
+   GHL: Create a new page with slug "properties"
+        Add a Custom HTML block. Paste this entire file.
+        The shared CSS (00-CUSTOM-CSS.css) must be in Tracking Code.
+        The nav (01-HEADER-NAV.html) must be the FIRST block.
+        The footer (12-FOOTER.html) must be the LAST block.
+   ============================================================ -->
+
+<section id="properties-hero" class="ecr ecr-section" style="background:#0a1628;padding-top:96px;padding-bottom:48px;">
+  <div class="ecr-label ecr-label-center">Listings</div>
+  <h1 class="ecr-h1" style="text-align:center;margin-bottom:16px;">
+    Find Your <span class="ecr-accent">Perfect Property</span>
+  </h1>
+  <p class="ecr-desc" style="text-align:center;max-width:580px;margin:0 auto 48px;">
+    Browse active listings across South and Central Florida. From starter homes to luxury estates — we have something for every buyer.
+  </p>
+
+  <!-- Search / Filter bar -->
+  <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px 32px;max-width:840px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;">
+    <div style="flex:1;min-width:160px;">
+      <label style="display:block;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Location</label>
+      <input type="text" placeholder="City, ZIP, or county" style="width:100%;padding:10px 14px;background:#0f1f3d;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;">
+    </div>
+    <div style="flex:1;min-width:130px;">
+      <label style="display:block;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Type</label>
+      <select style="width:100%;padding:10px 14px;background:#0f1f3d;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;">
+        <option value="">All Types</option>
+        <option>Single Family</option>
+        <option>Condo / Townhome</option>
+        <option>Multi-Family</option>
+        <option>Commercial</option>
+        <option>Land</option>
+      </select>
+    </div>
+    <div style="flex:1;min-width:130px;">
+      <label style="display:block;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Max Price</label>
+      <select style="width:100%;padding:10px 14px;background:#0f1f3d;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;">
+        <option value="">Any Price</option>
+        <option>Under $200K</option>
+        <option>$200K – $400K</option>
+        <option>$400K – $700K</option>
+        <option>$700K – $1M</option>
+        <option>$1M+</option>
+      </select>
+    </div>
+    <button onclick="ecrFilterSearch()" style="padding:11px 28px;background:#3b82f6;color:#fff;font-weight:700;font-size:14px;border:none;border-radius:8px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background 0.2s;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Search Listings</button>
+  </div>
+</section>
+
+<section id="properties-grid" class="ecr ecr-section" style="background:#f1f5f9;">
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:15px;color:#64748b;font-family:'Inter',sans-serif;"><span id="ecrListingCount" style="font-weight:700;color:#0a1628;">12</span> listings found</div>
+    <select onchange="ecrSortListings(this.value)" style="padding:8px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;color:#1e293b;background:#fff;font-family:'Inter',sans-serif;outline:none;cursor:pointer;">
+      <option value="newest">Newest First</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="sqft">Largest First</option>
+    </select>
+  </div>
+
+  <div class="ecr-prop-grid" id="ecrListingGrid">
+
+    <!-- Card 1 -->
+    <div class="ecr-prop-card">
+      <div class="ecr-prop-img-wrap">
+        <img src="https://tlt-image-server.lehr007.workers.dev/images/north-lauderdale-home?w=600&q=80" alt="Modern home" class="ecr-prop-img" loading="lazy">
+        <span class="ecr-prop-badge">Active</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$389,000</div>
+        <div class="ecr-prop-addr">4821 Palmetto Rd · Miami, FL 33142</div>
+        <div class="ecr-prop-stats">
+          <span>3 <small>Beds</small></span>
+          <span>2 <small>Baths</small></span>
+          <span>1,640 <small>sqft</small></span>
+        </div>
+        <a href="/properties/4821-palmetto-rd" class="ecr-prop-cta">View Details</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="ecr-prop-card">
+      <div class="ecr-prop-img-wrap">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Pool home" class="ecr-prop-img" loading="lazy">
+        <span class="ecr-prop-badge">Active</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$524,900</div>
+        <div class="ecr-prop-addr">219 Coral Way · Homestead, FL 33030</div>
+        <div class="ecr-prop-stats">
+          <span>4 <small>Beds</small></span>
+          <span>3 <small>Baths</small></span>
+          <span>2,210 <small>sqft</small></span>
+        </div>
+        <a href="/properties/219-coral-way" class="ecr-prop-cta">View Details</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="ecr-prop-card">
+      <div class="ecr-prop-img-wrap">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Contemporary home" class="ecr-prop-img" loading="lazy">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$299,500</div>
+        <div class="ecr-prop-addr">1108 Orange Ave · Orlando, FL 32801</div>
+        <div class="ecr-prop-stats">
+          <span>3 <small>Beds</small></span>
+          <span>2.5 <small>Baths</small></span>
+          <span>1,495 <small>sqft</small></span>
+        </div>
+        <a href="/properties/1108-orange-ave" class="ecr-prop-cta">View Details</a>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="ecr-prop-card">
+      <div class="ecr-prop-img-wrap">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80" alt="Luxury home" class="ecr-prop-img" loading="lazy">
+        <span class="ecr-prop-badge">Active</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$749,000</div>
+        <div class="ecr-prop-addr">3344 Biscayne Blvd · Miami, FL 33137</div>
+        <div class="ecr-prop-stats">
+          <span>5 <small>Beds</small></span>
+          <span>4 <small>Baths</small></span>
+          <span>3,100 <small>sqft</small></span>
+        </div>
+        <a href="/properties/3344-biscayne-blvd" class="ecr-prop-cta">View Details</a>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="ecr-prop-card">
+      <div class="ecr-prop-img-wrap">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Family home" class="ecr-prop-img" loading="lazy">
+        <span class="ecr-prop-badge">Active</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$415,000</div>
+        <div class="ecr-prop-addr">88 Lake Vista Dr · Kissimmee, FL 34741</div>
+        <div class="ecr-prop-stats">
+          <span>4 <small>Beds</small></span>
+          <span>3 <small>Baths</small></span>
+          <span>1,980 <small>sqft</small></span>
+        </div>
+        <a href="/properties/88-lake-vista-dr" class="ecr-prop-cta">View Details</a>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="ecr-prop-card">
+      <div class="ecr-prop-img-wrap">
+        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="Condo" class="ecr-prop-img" loading="lazy">
+        <span class="ecr-prop-badge ecr-badge-new">New</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$219,000</div>
+        <div class="ecr-prop-addr">501 Brickell Key Dr #1204 · Miami, FL 33131</div>
+        <div class="ecr-prop-stats">
+          <span>2 <small>Beds</small></span>
+          <span>2 <small>Baths</small></span>
+          <span>1,050 <small>sqft</small></span>
+        </div>
+        <a href="/properties/501-brickell-key-1204" class="ecr-prop-cta">View Details</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Load More -->
+  <div style="text-align:center;margin-top:56px;">
+    <button onclick="ecrLoadMore()" style="padding:14px 40px;background:transparent;border:2px solid #3b82f6;color:#3b82f6;font-weight:700;font-size:15px;border-radius:50px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='#3b82f6';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#3b82f6'">Load More Listings</button>
+  </div>
+
+</section>
+
+<!-- CTA strip -->
+<section class="ecr ecr-section" style="background:#0a1628;padding:64px 80px;text-align:center;">
+  <h2 class="ecr-h2" style="margin-bottom:16px;">Not Finding What You're Looking For?</h2>
+  <p class="ecr-desc" style="margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto;">
+    Julio has access to off-market and pre-MLS listings across Florida. Tell us what you need and we'll find it.
+  </p>
+  <a href="/contact" class="ecr-btn ecr-btn-primary" style="margin-right:12px;">Talk to Julio</a>
+  <a href="tel:3053311152" class="ecr-btn ecr-btn-outline">Call (305) 331-1152</a>
+</section>
+
+<script>
+function ecrFilterSearch() {
+  // Wire up to your IDX or MLS feed; for now just acknowledge
+  alert('Search functionality coming soon. Call (305) 331-1152 for immediate listings.');
+}
+function ecrSortListings(val) {
+  // Placeholder — integrate with IDX/MLS
+}
+function ecrLoadMore() {
+  alert('More listings coming soon. Call (305) 331-1152.');
+}
+</script>
+
+<style>
+.ecr-prop-cta {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: #0a1628;
+  color: #3b82f6;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 0 0 12px 12px;
+  transition: background 0.2s, color 0.2s;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+.ecr-prop-cta:hover { background: #3b82f6; color: #fff; }
+.ecr-badge-new { background: #10b981 !important; }
+@media (max-width: 900px) {
+  #properties-hero > div:last-child { flex-direction: column; }
+  #properties-grid > div:first-child { flex-direction: column; }
+}
+</style>
+
+<!-- ============================================================
+   BLOCK 12 — FOOTER
+   GHL: Custom HTML element, last element on the page
+        (below Contact section)
+   ============================================================ -->
+<footer class="ecr" style="background:#0a1628;border-top:1px solid rgba(255,255,255,0.08);padding:60px 80px 32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- 3-column grid -->
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+
+    <!-- Brand col -->
+    <div style="max-width:320px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff;margin-bottom:14px;">
+        <div style="width:44px;height:44px;background:#152647;border:1px solid rgba(59,130,246,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#3b82f6;flex-shrink:0;">ECR</div>
+        Elite Capital Realty Inc.
+      </div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.7;">
+        Julio Cardoso · Over 23 years helping families find their home across South and Central Florida.
+      </p>
+    </div>
+
+    <!-- Pages col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Pages</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="/" style="font-size:14px;color:#94a3b8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
+        <li><a href="/properties" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Properties</a></li>
+        <li><a href="/meet-our-agents" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Meet Our Agents</a></li>
+        <li><a href="/blog" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#94a3b8'">Blog</a></li>
+        <li><a href="/join-our-team" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Join Our Team</a></li>
+      </ul>
+    </div>
+
+    <!-- Services col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Services</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Residential Sales</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Commercial Real Estate</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Property Management</a></li>
+        <li><a href="#ecr-financing" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Mortgage &amp; Loans</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:#94a3b8;">
+    <span>© 2026 Elite Capital Realty Inc. All rights reserved.</span>
+    <span>
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Terms &amp; Conditions</a>
+      &nbsp;·&nbsp;
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
+    </span>
+    <span>(305) 331-1152 · Serving all of Florida</span>
+  </div>
+
+</footer>
+
+<!-- Smooth scroll for all anchor links -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+
+<style>
+@media(max-width:900px){
+  footer > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+  footer > div:last-child {
+    flex-direction: column;
+    text-align: center;
+  }
+  footer { padding: 48px 24px 24px !important; }
+}
+</style>

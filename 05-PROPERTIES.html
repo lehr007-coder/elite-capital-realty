@@ -1,0 +1,143 @@
+<!-- ============================================================
+   BLOCK 05 — FEATURED LISTINGS / PROPERTIES
+   GHL: Custom HTML element, placed below About section
+   ============================================================ -->
+<section id="ecr-properties" class="ecr ecr-section" style="background:#f1f5f9;">
+
+  <div class="ecr-label">Our Properties</div>
+  <h2 class="ecr-h2 ecr-h2-dark">Featured <span class="ecr-accent">Listings</span></h2>
+  <p style="font-size:16px;color:#64748b;margin-bottom:32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+    Browse our properties across South &amp; Central Florida — for sale, for rent, and recently sold.
+  </p>
+
+  <!-- Filter buttons -->
+  <div class="ecr-filter-row">
+    <button class="ecr-filter-btn active" onclick="ecrFilter(this,'all')">All 12</button>
+    <button class="ecr-filter-btn" onclick="ecrFilter(this,'sale')">For Sale 5</button>
+    <button class="ecr-filter-btn" onclick="ecrFilter(this,'rent')">For Rent 3</button>
+    <button class="ecr-filter-btn" onclick="ecrFilter(this,'closed')">Closed Deals 4</button>
+  </div>
+
+  <!-- Property grid -->
+  <div class="ecr-prop-grid">
+
+    <!-- 1 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://tlt-image-server.lehr007.workers.dev/images/north-lauderdale-home?w=500&q=80" alt="1701 NE 115th St">
+        <span class="ecr-prop-badge ecr-badge-sale">For Sale</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$249,900</div>
+        <div class="ecr-prop-address">1701 NE 115th St, #1A — Miami, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">1</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">1</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">776</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80" alt="10 McCarthy Avenue">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$139,000</div>
+        <div class="ecr-prop-address">10 McCarthy Avenue — Frostproof, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">2</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">1</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,040</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=500&q=80" alt="5448 Meadow Walk Drive">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$393,990</div>
+        <div class="ecr-prop-address">5448 Meadow Walk Drive — Davenport, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">6</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">3</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">2,463</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&q=80" alt="5868 Agostino Way">
+        <span class="ecr-prop-badge ecr-badge-sale">For Sale</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$439,000</div>
+        <div class="ecr-prop-address">5868 Agostino Way — Ave Maria, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">3</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">2.5</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,924</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="ecr-prop-card" data-type="rent">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&q=80" alt="219 Glowing Peace Lane">
+        <span class="ecr-prop-badge ecr-badge-rent">For Rent</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$2,150<span style="font-size:13px;font-weight:500;color:#64748b;">/mo</span></div>
+        <div class="ecr-prop-address">219 Glowing Peace Lane #85 — Orlando, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">3</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">2.5</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,495</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="ecr-prop-card" data-type="sale">
+      <div class="ecr-prop-img">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=500&q=80" alt="1120 Chesterfield">
+        <span class="ecr-prop-badge ecr-badge-pending">Pending</span>
+      </div>
+      <div class="ecr-prop-body">
+        <div class="ecr-prop-price">$337,900</div>
+        <div class="ecr-prop-address">1120 Chesterfield — Kissimmee, FL</div>
+        <div class="ecr-prop-specs">
+          <div><div class="ecr-spec-val">4</div><div class="ecr-spec-lbl">Beds</div></div>
+          <div><div class="ecr-spec-val">2</div><div class="ecr-spec-lbl">Baths</div></div>
+          <div><div class="ecr-spec-val">1,814</div><div class="ecr-spec-lbl">sqft</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;">
+    <a href="#ecr-contact" class="ecr-btn ecr-btn-primary">View All Properties</a>
+  </div>
+
+</section>
+
+<script>
+function ecrFilter(btn, type) {
+  document.querySelectorAll('.ecr-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.ecr-prop-card').forEach(function(card){
+    card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+  });
+}
+</script>

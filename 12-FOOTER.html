@@ -1,0 +1,81 @@
+<!-- ============================================================
+   BLOCK 12 — FOOTER
+   GHL: Custom HTML element, last element on the page
+        (below Contact section)
+   ============================================================ -->
+<footer class="ecr" style="background:#0a1628;border-top:1px solid rgba(255,255,255,0.08);padding:60px 80px 32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- 3-column grid -->
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+
+    <!-- Brand col -->
+    <div style="max-width:320px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff;margin-bottom:14px;">
+        <div style="width:44px;height:44px;background:#152647;border:1px solid rgba(59,130,246,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#3b82f6;flex-shrink:0;">ECR</div>
+        Elite Capital Realty Inc.
+      </div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.7;">
+        Julio Cardoso · Over 23 years helping families find their home across South and Central Florida.
+      </p>
+    </div>
+
+    <!-- Pages col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Pages</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="/" style="font-size:14px;color:#94a3b8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
+        <li><a href="/properties" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Properties</a></li>
+        <li><a href="/meet-our-agents" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Meet Our Agents</a></li>
+        <li><a href="/blog" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#94a3b8'">Blog</a></li>
+        <li><a href="/join-our-team" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Join Our Team</a></li>
+      </ul>
+    </div>
+
+    <!-- Services col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Services</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Residential Sales</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Commercial Real Estate</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Property Management</a></li>
+        <li><a href="#ecr-financing" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Mortgage &amp; Loans</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:#94a3b8;">
+    <span>© 2026 Elite Capital Realty Inc. All rights reserved.</span>
+    <span>
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Terms &amp; Conditions</a>
+      &nbsp;·&nbsp;
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
+    </span>
+    <span>(305) 331-1152 · Serving all of Florida</span>
+  </div>
+
+</footer>
+
+<!-- Smooth scroll for all anchor links -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+
+<style>
+@media(max-width:900px){
+  footer > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+  footer > div:last-child {
+    flex-direction: column;
+    text-align: center;
+  }
+  footer { padding: 48px 24px 24px !important; }
+}
+</style>

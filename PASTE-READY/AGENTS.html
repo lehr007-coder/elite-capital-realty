@@ -1,0 +1,344 @@
+<!-- ============================================================
+   BLOCK 01 — HEADER / NAV
+   GHL: Add a "Custom Code" element at the TOP of your page
+        (above all sections). Paste this entire snippet.
+   ============================================================ -->
+
+<!-- Shared CSS must be loaded first — paste 00-CUSTOM-CSS.css
+     into Page Settings → Custom CSS before using any blocks.    -->
+
+<style>
+.ecr-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #0a1628;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+.ecr-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.ecr-nav-logo-badge {
+  width: 44px; height: 44px;
+  background: #152647;
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+.ecr-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.ecr-nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.ecr-nav-links a:hover,
+.ecr-nav-links a.active { opacity: 1; }
+.ecr-nav-cta {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.ecr-nav-cta:hover { background: #2563eb; color: #fff; }
+
+/* Mobile hamburger */
+.ecr-nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.ecr-nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.ecr-nav-mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 64px; left: 0; right: 0;
+  background: #0a1628;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 24px 24px;
+  gap: 16px;
+}
+.ecr-nav-mobile.open { display: flex; }
+.ecr-nav-mobile a {
+  font-size: 16px; font-weight: 500;
+  color: #fff; text-decoration: none;
+  opacity: 0.85; padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ecr-nav-mobile a:hover { opacity: 1; }
+
+/* Push page content below fixed nav */
+body { padding-top: 64px; }
+
+/* Full-width breakout — overrides GHL's ~1150px column wrapper */
+html, body { overflow-x: hidden !important; }
+section.ecr, footer.ecr, .ecr-ticker, .ecr-assoc-bar {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+  .ecr-nav { padding: 0 20px; }
+  .ecr-nav-links { display: none; }
+  .ecr-nav-toggle { display: flex; }
+}
+</style>
+
+<nav class="ecr-nav">
+  <a href="/" class="ecr-nav-logo">
+    
+    <img src="https://tlt-image-server.lehr007.workers.dev/images/logo-ecr" alt="Elite Capital Realty Inc." style="height:44px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ecr-nav-logo-badge" style="display:none;">ECR</div>
+  </a>
+
+  <ul class="ecr-nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/properties">Properties</a></li>
+    <li><a href="/meet-our-agents">Meet Our Agents</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/join-our-team">Join Our Team</a></li>
+  </ul>
+
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="ecr-nav-toggle" onclick="document.getElementById('ecrMobileNav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="tel:3053311152" class="ecr-nav-cta">Call (305) 331-1152</a>
+  </div>
+</nav>
+
+<!-- Mobile dropdown -->
+<div id="ecrMobileNav" class="ecr-nav-mobile">
+  <a href="/">Home</a>
+  <a href="/properties">Properties</a>
+  <a href="/meet-our-agents">Meet Our Agents</a>
+  <a href="/blog">Blog</a>
+  <a href="/join-our-team">Join Our Team</a>
+  <a href="tel:3053311152" style="color:#3b82f6;opacity:1;font-weight:700;">(305) 331-1152</a>
+</div>
+
+<!-- ============================================================
+   PAGE — MEET OUR AGENTS
+   GHL: Create a new page with slug "meet-our-agents"
+        Add a Custom HTML block. Paste this entire file.
+        The shared CSS (00-CUSTOM-CSS.css) must be in Tracking Code.
+        The nav (01-HEADER-NAV.html) must be the FIRST block.
+        The footer (12-FOOTER.html) must be the LAST block.
+   ============================================================ -->
+
+<!-- Hero -->
+<section id="agents-hero" class="ecr ecr-section" style="background:#0a1628;padding-top:96px;padding-bottom:64px;text-align:center;">
+  <div class="ecr-label ecr-label-center">Our Team</div>
+  <h1 class="ecr-h1" style="margin-bottom:16px;">Meet the <span class="ecr-accent">ECR Team</span></h1>
+  <p class="ecr-desc" style="max-width:560px;margin:0 auto;">
+    Real estate professionals who know Florida like home. We bring experience, hustle, and genuine care to every transaction.
+  </p>
+</section>
+
+<!-- Primary Agent — Julio -->
+<section class="ecr ecr-section" style="background:#0f1f3d;">
+  <div style="display:flex;gap:60px;align-items:center;flex-wrap:wrap;">
+
+    <!-- Headshot -->
+    <div style="flex:0 0 280px;min-width:220px;">
+      
+      <img src="https://tlt-image-server.lehr007.workers.dev/images/julio-ecr-realty" alt="Julio Cardoso" style="width:100%;border-radius:20px;border:1px solid rgba(59,130,246,0.2);display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;width:100%;aspect-ratio:1;background:linear-gradient(135deg,#152647 0%,#0f1f3d 100%);border-radius:20px;border:1px solid rgba(59,130,246,0.2);flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+        <div style="width:80px;height:80px;background:#3b82f6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#fff;font-family:'Inter',sans-serif;">JC</div>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3b82f6;margin-bottom:10px;font-family:'Inter',sans-serif;">Broker / Owner</div>
+      <h2 class="ecr-h2" style="margin-bottom:6px;">Julio Cardoso</h2>
+      <div style="font-size:15px;color:#94a3b8;margin-bottom:24px;font-family:'Inter',sans-serif;">Licensed Real Estate Broker · Florida</div>
+
+      <p style="font-size:15px;color:#cbd5e1;line-height:1.75;margin-bottom:20px;font-family:'Inter',sans-serif;">
+        With over 23 years of experience in Florida real estate, Julio Cardoso has helped hundreds of families buy, sell, and invest across Miami-Dade, Broward, Orange, Osceola, and Brevard counties. He founded Elite Capital Realty Inc. to build a brokerage that puts clients — and agents — first.
+      </p>
+      <p style="font-size:15px;color:#cbd5e1;line-height:1.75;margin-bottom:32px;font-family:'Inter',sans-serif;">
+        Julio is a member of the Miami Association of Realtors, Orlando Regional Realtor Association, and Space Coast Association of Realtors. Fluent in English and Spanish, he's known for making the complex process of buying or selling feel simple and stress-free.
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;">
+        <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 18px;font-size:13px;font-weight:600;color:#93c5fd;font-family:'Inter',sans-serif;">23+ Years Experience</div>
+        <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 18px;font-size:13px;font-weight:600;color:#93c5fd;font-family:'Inter',sans-serif;">Bilingual EN / ES</div>
+        <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 18px;font-size:13px;font-weight:600;color:#93c5fd;font-family:'Inter',sans-serif;">Statewide Listings</div>
+        <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 18px;font-size:13px;font-weight:600;color:#93c5fd;font-family:'Inter',sans-serif;">100% Commission Broker</div>
+      </div>
+
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="tel:3053311152" class="ecr-btn ecr-btn-primary">Call (305) 331-1152</a>
+        <a href="mailto:elitecapitalrealtyinc@gmail.com" class="ecr-btn ecr-btn-outline">Send Email</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Service areas -->
+<section class="ecr ecr-section" style="background:#0a1628;">
+  <div class="ecr-label ecr-label-center">Coverage</div>
+  <h2 class="ecr-h2" style="text-align:center;margin-bottom:48px;">We Know <span class="ecr-accent">All of Florida</span></h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin:0 auto;">
+    <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:28px 24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:10px;">🏙️</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Inter',sans-serif;">Miami-Dade</div>
+      <div style="font-size:13px;color:#94a3b8;font-family:'Inter',sans-serif;">Miami, Homestead, Coral Gables, Hialeah</div>
+    </div>
+    <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:28px 24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:10px;">🌊</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Inter',sans-serif;">Broward</div>
+      <div style="font-size:13px;color:#94a3b8;font-family:'Inter',sans-serif;">Fort Lauderdale, Hollywood, Pembroke Pines</div>
+    </div>
+    <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:28px 24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:10px;">🏰</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Inter',sans-serif;">Orange / Osceola</div>
+      <div style="font-size:13px;color:#94a3b8;font-family:'Inter',sans-serif;">Orlando, Kissimmee, Celebration</div>
+    </div>
+    <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:28px 24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:10px;">🚀</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Inter',sans-serif;">Space Coast</div>
+      <div style="font-size:13px;color:#94a3b8;font-family:'Inter',sans-serif;">Melbourne, Cocoa Beach, Titusville</div>
+    </div>
+    <div style="background:#0f1f3d;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:28px 24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:10px;">🍊</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Inter',sans-serif;">Central FL</div>
+      <div style="font-size:13px;color:#94a3b8;font-family:'Inter',sans-serif;">Lakeland, Ocala, Gainesville</div>
+    </div>
+  </div>
+</section>
+
+<!-- Join team CTA -->
+<section class="ecr ecr-section" style="background:#0f1f3d;text-align:center;">
+  <div class="ecr-label ecr-label-center">Agents Welcome</div>
+  <h2 class="ecr-h2" style="margin-bottom:16px;">Join the <span class="ecr-accent">ECR Family</span></h2>
+  <p class="ecr-desc" style="max-width:540px;margin:0 auto 36px;">
+    Are you a licensed Florida agent looking for a brokerage that respects your work? 100% commission, no desk fees, full support.
+  </p>
+  <a href="/join-our-team" class="ecr-btn ecr-btn-primary">Learn About Joining</a>
+</section>
+
+<!-- ============================================================
+   BLOCK 12 — FOOTER
+   GHL: Custom HTML element, last element on the page
+        (below Contact section)
+   ============================================================ -->
+<footer class="ecr" style="background:#0a1628;border-top:1px solid rgba(255,255,255,0.08);padding:60px 80px 32px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- 3-column grid -->
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+
+    <!-- Brand col -->
+    <div style="max-width:320px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:#fff;margin-bottom:14px;">
+        <div style="width:44px;height:44px;background:#152647;border:1px solid rgba(59,130,246,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#3b82f6;flex-shrink:0;">ECR</div>
+        Elite Capital Realty Inc.
+      </div>
+      <p style="font-size:14px;color:#94a3b8;line-height:1.7;">
+        Julio Cardoso · Over 23 years helping families find their home across South and Central Florida.
+      </p>
+    </div>
+
+    <!-- Pages col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Pages</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="/" style="font-size:14px;color:#94a3b8;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Home</a></li>
+        <li><a href="/properties" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Properties</a></li>
+        <li><a href="/meet-our-agents" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Meet Our Agents</a></li>
+        <li><a href="/blog" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#94a3b8'">Blog</a></li>
+        <li><a href="/join-our-team" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Join Our Team</a></li>
+      </ul>
+    </div>
+
+    <!-- Services col -->
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:18px;">Services</div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Residential Sales</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Commercial Real Estate</a></li>
+        <li><a href="#ecr-services" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Property Management</a></li>
+        <li><a href="#ecr-financing" style="font-size:14px;color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Mortgage &amp; Loans</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:#94a3b8;">
+    <span>© 2026 Elite Capital Realty Inc. All rights reserved.</span>
+    <span>
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Terms &amp; Conditions</a>
+      &nbsp;·&nbsp;
+      <a href="#" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">Privacy Policy</a>
+    </span>
+    <span>(305) 331-1152 · Serving all of Florida</span>
+  </div>
+
+</footer>
+
+<!-- Smooth scroll for all anchor links -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+
+<style>
+@media(max-width:900px){
+  footer > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+  footer > div:last-child {
+    flex-direction: column;
+    text-align: center;
+  }
+  footer { padding: 48px 24px 24px !important; }
+}
+</style>

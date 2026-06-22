@@ -1,0 +1,103 @@
+<!-- ============================================================
+   BLOCK 07 — FINANCING & MORTGAGE CALCULATOR
+   GHL: Custom HTML element, placed below Services section
+   ============================================================ -->
+<section id="ecr-financing" class="ecr ecr-section" style="background:#0a1628;">
+
+  <div style="display:flex;gap:60px;align-items:flex-start;flex-wrap:wrap;">
+
+    <!-- LEFT — Copy -->
+    <div style="flex:1;min-width:260px;">
+      <div class="ecr-label">Financing &amp; Mortgages</div>
+      <h2 class="ecr-h2">Get the Right <span class="ecr-accent">Mortgage</span> for You</h2>
+      <p class="ecr-desc">
+        We work with multiple lenders and assistance programs to find the best financing solution for your situation — whether you're a first-time buyer or a seasoned investor.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:36px;">
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          All credit types considered
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          Down Payment Assistance programs
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          FHA, VA, Conventional, and ITIN loans
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#fff;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">
+          <span style="width:8px;height:8px;background:#3b82f6;border-radius:50%;flex-shrink:0;display:inline-block;"></span>
+          Self-employed &amp; 1099 friendly
+        </div>
+      </div>
+
+      <a href="#ecr-prequal" class="ecr-btn ecr-btn-primary">Get Pre-Qualified Now</a>
+    </div>
+
+    <!-- RIGHT — Calculator -->
+    <div class="ecr-calculator" style="flex:0 0 420px;min-width:280px;">
+      <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Mortgage Calculator</div>
+      <p style="font-size:13px;color:#94a3b8;margin-bottom:24px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;">Estimate your monthly payment</p>
+
+      <label class="ecr-calc-label">Home Price ($)</label>
+      <input class="ecr-calc-input" type="number" id="ecrHomePrice" value="400000" oninput="ecrCalc()">
+
+      <label class="ecr-calc-label">Down Payment ($)</label>
+      <input class="ecr-calc-input" type="number" id="ecrDownPayment" value="70000" oninput="ecrCalc()">
+
+      <label class="ecr-calc-label">Interest Rate (%)</label>
+      <input class="ecr-calc-input" type="number" id="ecrRate" value="7.0" step="0.1" oninput="ecrCalc()">
+
+      <label class="ecr-calc-label">Loan Term</label>
+      <select class="ecr-calc-select" id="ecrTerm" onchange="ecrCalc()">
+        <option value="15">15 years</option>
+        <option value="20">20 years</option>
+        <option value="30" selected>30 years</option>
+      </select>
+
+      <div class="ecr-calc-result">
+        <div class="ecr-calc-result-label">Estimated Monthly Payment</div>
+        <div class="ecr-calc-amount" id="ecrMonthly">$2,193</div>
+        <div class="ecr-calc-breakdown">
+          <span>Total Loan: <strong id="ecrLoan">$330,000</strong></span>
+          <span>Total Paid: <strong id="ecrTotal">$789,480</strong></span>
+        </div>
+      </div>
+      <p class="ecr-calc-note">Principal + interest only. Taxes &amp; insurance not included.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+function ecrCalc() {
+  var price = parseFloat(document.getElementById('ecrHomePrice').value) || 0;
+  var down  = parseFloat(document.getElementById('ecrDownPayment').value) || 0;
+  var rate  = parseFloat(document.getElementById('ecrRate').value) || 0;
+  var years = parseInt(document.getElementById('ecrTerm').value) || 30;
+  var principal = price - down;
+  var monthly;
+  if (rate === 0) {
+    monthly = principal / (years * 12);
+  } else {
+    var r = (rate / 100) / 12;
+    var n = years * 12;
+    monthly = principal * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n) - 1);
+  }
+  var totalPaid = monthly * years * 12;
+  document.getElementById('ecrMonthly').textContent = '$' + Math.round(monthly).toLocaleString();
+  document.getElementById('ecrLoan').textContent    = '$' + Math.round(principal).toLocaleString();
+  document.getElementById('ecrTotal').textContent   = '$' + Math.round(totalPaid).toLocaleString();
+}
+ecrCalc();
+</script>
+
+<style>
+@media(max-width:900px){
+  #ecr-financing > div { flex-direction:column; }
+  #ecr-financing .ecr-calculator { flex:none !important; width:100% !important; }
+}
+</style>
